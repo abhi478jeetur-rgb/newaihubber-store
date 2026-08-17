@@ -182,7 +182,7 @@ export const products: Product[] = [
     animatedPreview: {
       type: 'gif',
       url: 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdzc1Mm80NWhnOWJsdDR1czZodm1wbGVzNzk0Yzh1ZmdtbjFlcjA2OSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l378c04F2fjeZ7v4A/giphy.gif',
-      posterUrl: 'https://images.unsplash.com/photo-1677442136019-21780efad99a?q=80&w=800&auto=format&fit=crop',
+      posterUrl: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=800&auto=format&fit=crop',
       aspectRatio: 'video',
     },
     landingPage: {
