@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import { getProductBySlug, getAllProducts } from '@/lib/products';
 import { ProductLanding } from '@/components/product/ProductLanding';
+import { EbookSalesPage } from '@/components/product/EbookSalesPage';
 import {
   generateProductJsonLd,
   generateBreadcrumbJsonLd,
@@ -64,6 +65,8 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
   ]);
   const faqJsonLd = product.landingPage.faq ? generateFAQJsonLd(product.landingPage.faq) : null;
 
+  const is50SaasEbook = product.slug === '50-micro-saas-ideas-ebook' || product.slug === '50-micro-saas-ideas';
+
   return (
     <>
       {/* Schema.org JSON-LD for Traditional SEO & AI LLM Search Engines */}
@@ -82,7 +85,11 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
         />
       )}
 
-      <ProductLanding product={product} />
+      {is50SaasEbook ? (
+        <EbookSalesPage product={product} />
+      ) : (
+        <ProductLanding product={product} />
+      )}
     </>
   );
 }
