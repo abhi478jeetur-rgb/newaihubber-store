@@ -1,8 +1,7 @@
 'use client';
 
 import React from 'react';
-import { CategorySlug } from '@/types/product';
-import { STORE_CATEGORIES } from '@/data/products';
+import { CategorySlug, STORE_CATEGORIES } from '@/types/product';
 import { motion } from 'framer-motion';
 
 interface CategoryNavProps {

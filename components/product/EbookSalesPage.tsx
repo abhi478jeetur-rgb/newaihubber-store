@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
 import {
   ArrowLeft,
   CheckCircle2,
@@ -13,24 +12,24 @@ import {
   Download,
   BookOpen,
   Layers,
-  Cpu,
-  Lock,
-  ChevronDown,
-  ArrowRight,
   Code2,
   Database,
   Workflow,
   MessageSquare,
-  DollarSign,
-  AlertTriangle,
-  HelpCircle,
+  Lock,
+  ChevronDown,
+  ArrowRight,
   XCircle,
-  FileText,
   Search,
+  HeartHandshake,
+  TrendingUp,
+  Target,
+  Clock,
+  Compass,
 } from 'lucide-react';
 import { Product } from '@/types/product';
 import { formatPrice } from '@/lib/utils';
-import { EBOOK_CATEGORIES, MICRO_SAAS_IDEAS, MicroSaaSConcept } from '@/data/ebook-50-saas';
+import { EBOOK_CATEGORIES, MICRO_SAAS_IDEAS } from '@/data/ebook-50-saas';
 
 interface EbookSalesPageProps {
   product: Product;
@@ -80,16 +79,16 @@ export const EbookSalesPage: React.FC<EbookSalesPageProps> = ({ product }) => {
               <div className="h-6 w-6 rounded-lg bg-white text-black flex items-center justify-center font-bold text-xs">
                 N
               </div>
-              <span className="font-bold text-xs text-white tracking-tight">NewAIHubber</span>
+              <span className="font-bold text-xs text-white tracking-tight">NewAIHubber Store</span>
             </Link>
           </div>
 
           {/* Nav Anchors */}
           <nav className="hidden md:flex items-center gap-6 text-xs text-neutral-400 font-medium">
+            <a href="#emotions" className="hover:text-white transition-colors">Why Build</a>
             <a href="#previews" className="hover:text-white transition-colors">Look Inside</a>
             <a href="#frameworks" className="hover:text-white transition-colors">Frameworks</a>
             <a href="#ideas" className="hover:text-white transition-colors">50 Ideas</a>
-            <a href="#roadmap" className="hover:text-white transition-colors">7-Day Launch</a>
             <a href="#faq" className="hover:text-white transition-colors">FAQ</a>
           </nav>
 
@@ -114,7 +113,7 @@ export const EbookSalesPage: React.FC<EbookSalesPageProps> = ({ product }) => {
         {/* 2. HERO SECTION */}
         <section className="space-y-8 text-center max-w-4xl mx-auto pt-4">
           <div className="flex flex-wrap items-center justify-center gap-2">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-neutral-900 border border-neutral-800 text-[11px] font-semibold text-neutral-300">
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-neutral-900 border border-neutral-800 text-[11px] font-semibold text-neutral-300">
               <Sparkles className="w-3.5 h-3.5 text-white" />
               <span>Full English & Hinglish Editions Included</span>
             </span>
@@ -129,12 +128,12 @@ export const EbookSalesPage: React.FC<EbookSalesPageProps> = ({ product }) => {
           </h1>
 
           <p className="text-base sm:text-lg text-neutral-300 font-normal max-w-2xl mx-auto leading-relaxed">
-            A practical handbook to validating, building, and selling profitable software ideas using AI and No-Code tools—tailored for non-technical builders.
+            Stop waiting for a technical co-founder. Discover practical, validated software ideas you can build, launch, and monetize using visual no-code tools and AI.
           </p>
 
           {/* Target Audience Pills */}
           <div className="flex flex-wrap items-center justify-center gap-2 text-xs text-neutral-400">
-            <span className="text-neutral-500">Ideal for:</span>
+            <span className="text-neutral-500">Built for:</span>
             <span className="px-2.5 py-1 rounded-md bg-neutral-900 border border-neutral-800 text-neutral-200">Students</span>
             <span className="px-2.5 py-1 rounded-md bg-neutral-900 border border-neutral-800 text-neutral-200">Freelancers</span>
             <span className="px-2.5 py-1 rounded-md bg-neutral-900 border border-neutral-800 text-neutral-200">Agency Owners</span>
@@ -161,10 +160,10 @@ export const EbookSalesPage: React.FC<EbookSalesPageProps> = ({ product }) => {
 
           <p className="text-[11px] text-neutral-500 flex items-center justify-center gap-2">
             <Lock className="w-3.5 h-3.5 text-neutral-400" />
-            <span>Instant Digital Access Immediately After Successful Payment</span>
+            <span>Instant Digital Download Immediately After Successful Payment</span>
           </p>
 
-          {/* Visual Ebook Mockup */}
+          {/* Visual Ebook Cover Preview */}
           <div className="relative aspect-[16/9] w-full rounded-2xl border border-neutral-800 bg-[#000000] overflow-hidden shadow-2xl mt-6 group">
             <Image
               src={product.animatedPreview.posterUrl || product.animatedPreview.url}
@@ -176,12 +175,57 @@ export const EbookSalesPage: React.FC<EbookSalesPageProps> = ({ product }) => {
             <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent pointer-events-none" />
             <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs text-neutral-300 bg-black/70 backdrop-blur-md p-3 rounded-xl border border-white/10">
               <span className="font-semibold text-white">Full English Edition + Hinglish Translation Included</span>
-              <span className="font-mono text-neutral-400">PDF • ePub • Instant Download</span>
+              <span className="font-mono text-neutral-400">PDF • ePub • Instant Access</span>
             </div>
           </div>
         </section>
 
-        {/* 3. VALUE PROPOSITION: THE GAP */}
+        {/* 3. EMOTIONAL HIGHLIGHTS & REALITY CHECK */}
+        <section id="emotions" className="p-8 sm:p-12 rounded-3xl border border-neutral-800 bg-[#121212] space-y-8">
+          <div className="max-w-3xl space-y-3">
+            <span className="text-xs font-semibold text-neutral-400 uppercase tracking-wider">The Non-Technical Founder's Journey</span>
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-white">
+              Break Free From Code Paralysis & Build Software That Generates Monthly Revenue
+            </h2>
+            <p className="text-sm text-neutral-300 leading-relaxed font-normal">
+              You don't need a 4-year computer science degree or a $50,000 developer budget to launch software. Modern no-code building blocks allow anyone with determination to build focused Micro-SaaS tools.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+            <div className="p-6 rounded-2xl bg-neutral-900 border border-neutral-800 space-y-3">
+              <div className="h-9 w-9 rounded-xl bg-neutral-800 flex items-center justify-center text-white">
+                <Clock className="w-4 h-4" />
+              </div>
+              <h3 className="font-bold text-base text-white">Stop Wasting Months Learning Code</h3>
+              <p className="text-xs text-neutral-400 leading-relaxed">
+                Skip 2 years of learning syntax errors. Build working web portals, automated databases, and payment workflows in days using visual tools.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-2xl bg-neutral-900 border border-neutral-800 space-y-3">
+              <div className="h-9 w-9 rounded-xl bg-neutral-800 flex items-center justify-center text-white">
+                <TrendingUp className="w-4 h-4" />
+              </div>
+              <h3 className="font-bold text-base text-white">Build Cash-Flow Recurring Revenue</h3>
+              <p className="text-xs text-neutral-400 leading-relaxed">
+                Micro-SaaS aims for small, profitable niches charging $5–$30/month per user. 50 active subscribers can generate predictable monthly income.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-2xl bg-neutral-900 border border-neutral-800 space-y-3">
+              <div className="h-9 w-9 rounded-xl bg-neutral-800 flex items-center justify-center text-white">
+                <Compass className="w-4 h-4" />
+              </div>
+              <h3 className="font-bold text-base text-white">Validation Peace of Mind</h3>
+              <p className="text-xs text-neutral-400 leading-relaxed">
+                Never build in the dark again. Use the 5-Day Pre-Build Validation Method to confirm willingness to pay before touching a database.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* 4. VALUE PROPOSITION: THE GAP */}
         <section id="gap" className="p-8 sm:p-12 rounded-3xl border border-neutral-800 bg-[#121212] space-y-8">
           <div className="max-w-3xl space-y-3">
             <span className="text-xs font-semibold text-neutral-400 uppercase tracking-wider">The Real Problem</span>
@@ -243,48 +287,6 @@ export const EbookSalesPage: React.FC<EbookSalesPageProps> = ({ product }) => {
                   <span>7-Day MVP launch roadmap + ready-to-send outreach templates.</span>
                 </li>
               </ul>
-            </div>
-          </div>
-        </section>
-
-        {/* 4. WHY THIS EBOOK (UNIQUE VALUE) */}
-        <section className="space-y-8">
-          <div className="text-center max-w-2xl mx-auto space-y-3">
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-white">Why This Ebook?</h2>
-            <p className="text-xs sm:text-sm text-neutral-400">
-              Unlike generic blog posts or AI idea dumps, this handbook provides a structured methodology to brainstorm, validate, and build software without coding.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="p-6 rounded-2xl border border-neutral-800 bg-[#121212] space-y-3">
-              <div className="h-10 w-10 rounded-xl bg-neutral-900 border border-neutral-800 flex items-center justify-center text-white font-bold">
-                01
-              </div>
-              <h3 className="font-bold text-base text-white">Zero-Code Feasibility</h3>
-              <p className="text-xs text-neutral-400 leading-relaxed">
-                Every single concept in this book can be assembled using accessible visual tools like Airtable, Softr, Tally, and Make.com—no developer required.
-              </p>
-            </div>
-
-            <div className="p-6 rounded-2xl border border-neutral-800 bg-[#121212] space-y-3">
-              <div className="h-10 w-10 rounded-xl bg-neutral-900 border border-neutral-800 flex items-center justify-center text-white font-bold">
-                02
-              </div>
-              <h3 className="font-bold text-base text-white">Validate Before Building</h3>
-              <p className="text-xs text-neutral-400 leading-relaxed">
-                Includes the 5-Day Validation Framework to test demand and secure pre-commitments before writing a single line of database architecture.
-              </p>
-            </div>
-
-            <div className="p-6 rounded-2xl border border-neutral-800 bg-[#121212] space-y-3">
-              <div className="h-10 w-10 rounded-xl bg-neutral-900 border border-neutral-800 flex items-center justify-center text-white font-bold">
-                03
-              </div>
-              <h3 className="font-bold text-base text-white">Dual-Language Access</h3>
-              <p className="text-xs text-neutral-400 leading-relaxed">
-                Get both the full English Edition and the comprehensive Hinglish Edition with one single purchase. Learn in the language you are most comfortable with.
-              </p>
             </div>
           </div>
         </section>
@@ -702,7 +704,7 @@ export const EbookSalesPage: React.FC<EbookSalesPageProps> = ({ product }) => {
             {[
               {
                 question: 'Do I need any coding or programming experience?',
-                answer: 'No. This handbook is written specifically for beginners without a coding background. All 50 ideas are designed around visual drag-and-drop builders and automated tools like Airtable, Softr, Tally, and Make.com.',
+                answer: 'No. This handbook is written specifically for beginners without a coding background. All 50 ideas are designed around visual drag-and-drop tools like Airtable, Softr, Tally, and Make.com.',
               },
               {
                 question: 'Are both English and Hinglish editions included in one purchase?',

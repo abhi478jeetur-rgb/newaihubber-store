@@ -13,10 +13,22 @@ export interface CategoryOption {
   label: string;
 }
 
+export const STORE_CATEGORIES: CategoryOption[] = [
+  { slug: 'all', label: 'All' },
+  { slug: 'ebooks', label: 'Ebooks' },
+  { slug: 'ai-website-prompts', label: 'AI Website Prompts' },
+  { slug: 'ai-automation', label: 'AI / Automation' },
+  { slug: 'pdfs', label: 'PDFs' },
+  { slug: 'digital-products', label: 'Digital Products' },
+  { slug: 'templates', label: 'Templates' },
+  { slug: 'guides', label: 'Guides' },
+];
+
 export interface ProductFile {
   name: string;
   format: string;
   size: string;
+  downloadUrl?: string;
 }
 
 export interface ProductBenefit {
