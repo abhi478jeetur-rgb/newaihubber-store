@@ -1,0 +1,61 @@
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import './globals.css';
+
+const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
+
+export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://store.newaihubber.com'),
+  title: {
+    default: 'NewAIHubber Store | Curated Digital Products & AI Resources',
+    template: '%s | NewAIHubber Store',
+  },
+  description:
+    'A curated marketplace for AI website prompts, eBooks, Notion systems, PDFs, and automation blueprints.',
+  keywords: [
+    'AI Website Prompts',
+    'Micro-SaaS Ebook',
+    'Hinglish Ebook',
+    'AI Automation Workflows',
+    'Notion OS',
+    'NewAIHubber Store',
+  ],
+  authors: [{ name: 'NewAIHubber' }],
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://store.newaihubber.com',
+    siteName: 'NewAIHubber Store',
+    title: 'NewAIHubber Store | Curated Digital Products & AI Resources',
+    description: 'Curated AI prompts, eBooks, templates, and digital resources.',
+  },
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en" className="dark">
+      <body className={`${inter.variable} font-sans min-h-screen bg-[#0a0a0a] text-neutral-100 antialiased`}>
+        {children}
+        
+        {/* Minimal Footer */}
+        <footer className="border-t border-neutral-800/80 bg-[#0a0a0a] py-8 text-center text-xs text-neutral-500">
+          <div className="container max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>© {new Date().getFullYear()} NewAIHubber Store. All rights reserved.</p>
+            <div className="flex items-center gap-6">
+              <a href="https://www.newaihubber.com" target="_blank" rel="noopener noreferrer" className="hover:text-neutral-300">
+                Main Website
+              </a>
+              <a href="mailto:support@newaihubber.com" className="hover:text-neutral-300">
+                Support
+              </a>
+            </div>
+          </div>
+        </footer>
+      </body>
+    </html>
+  );
+}
