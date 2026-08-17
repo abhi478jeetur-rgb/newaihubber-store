@@ -3,6 +3,11 @@ import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import { getProductBySlug, getAllProducts } from '@/lib/products';
 import { ProductLanding } from '@/components/product/ProductLanding';
+import {
+  generateProductJsonLd,
+  generateBreadcrumbJsonLd,
+  generateFAQJsonLd,
+} from '@/lib/seo';
 
 interface ProductPageProps {
   params: {
@@ -21,14 +26,25 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   const product = await getProductBySlug(params.slug);
   if (!product) return {};
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://store.newaihubber.com';
+
   return {
     title: product.seo.title || `${product.title} | NewAIHubber Store`,
     description: product.seo.description || product.shortDescription,
     keywords: product.seo.keywords,
+    alternates: {
+      canonical: `${siteUrl}/product/${product.slug}`,
+    },
     openGraph: {
       title: product.seo.title || product.title,
       description: product.seo.description || product.shortDescription,
+      url: `${siteUrl}/product/${product.slug}`,
       images: [{ url: product.animatedPreview.posterUrl || product.animatedPreview.url }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: product.seo.title || product.title,
+      description: product.seo.description || product.shortDescription,
     },
   };
 }
@@ -40,5 +56,33 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
     notFound();
   }
 
-  return <ProductLanding product={product} />;
+  const productJsonLd = generateProductJsonLd(product);
+  const breadcrumbJsonLd = generateBreadcrumbJsonLd([
+    { name: 'Home', url: '/' },
+    { name: 'Products', url: '/' },
+    { name: product.title, url: `/product/${product.slug}` },
+  ]);
+  const faqJsonLd = product.landingPage.faq ? generateFAQJsonLd(product.landingPage.faq) : null;
+
+  return (
+    <>
+      {/* Schema.org JSON-LD for Traditional SEO & AI LLM Search Engines */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      {faqJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+      )}
+
+      <ProductLanding product={product} />
+    </>
+  );
 }

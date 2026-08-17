@@ -1,11 +1,14 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
+import { generateOrganizationJsonLd } from '@/lib/seo';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://store.newaihubber.com';
+
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://store.newaihubber.com'),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: 'NewAIHubber Store | Curated Digital Products & AI Resources',
     template: '%s | NewAIHubber Store',
@@ -24,10 +27,18 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://store.newaihubber.com',
+    url: SITE_URL,
     siteName: 'NewAIHubber Store',
     title: 'NewAIHubber Store | Curated Digital Products & AI Resources',
     description: 'Curated AI prompts, eBooks, templates, and digital resources.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'NewAIHubber Store | Curated Digital Products & AI Resources',
+    description: 'Curated AI prompts, eBooks, templates, and digital resources.',
+  },
+  alternates: {
+    canonical: SITE_URL,
   },
 };
 
@@ -36,8 +47,16 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const organizationSchema = generateOrganizationJsonLd();
+
   return (
     <html lang="en" className="dark">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+      </head>
       <body className={`${inter.variable} font-sans min-h-screen bg-[#0a0a0a] text-neutral-100 antialiased`}>
         {children}
         
