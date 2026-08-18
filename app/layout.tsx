@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { generateOrganizationJsonLd } from '@/lib/seo';
@@ -74,15 +75,27 @@ export default function RootLayout({
       <body className={`${inter.variable} font-sans min-h-screen bg-[#0a0a0a] text-neutral-100 antialiased`}>
         {children}
         
-        {/* Minimal Footer */}
+        {/* Footer with Legal Compliance Links */}
         <footer className="border-t border-neutral-800/80 bg-[#0a0a0a] py-8 text-center text-xs text-neutral-500">
-          <div className="container max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="container max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
             <p>© {new Date().getFullYear()} NewAIHubber Store. All rights reserved.</p>
-            <div className="flex items-center gap-6">
-              <a href="https://www.newaihubber.com" target="_blank" rel="noopener noreferrer" className="hover:text-neutral-300">
+            <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
+              <Link href="/privacy" className="hover:text-neutral-300 transition-colors">
+                Privacy Policy
+              </Link>
+              <Link href="/cookies" className="hover:text-neutral-300 transition-colors">
+                Cookie Policy
+              </Link>
+              <Link href="/terms" className="hover:text-neutral-300 transition-colors">
+                Terms of Service
+              </Link>
+              <Link href="/refund" className="hover:text-neutral-300 transition-colors">
+                Refund Policy
+              </Link>
+              <a href="https://www.newaihubber.com" target="_blank" rel="noopener noreferrer" className="hover:text-neutral-300 transition-colors">
                 Main Website
               </a>
-              <a href="mailto:support@newaihubber.com" className="hover:text-neutral-300">
+              <a href="mailto:support@newaihubber.com" className="hover:text-neutral-300 transition-colors">
                 Support
               </a>
             </div>
