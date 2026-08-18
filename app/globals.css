@@ -38,10 +38,11 @@
 
 @layer base {
   * {
-    @apply border-neutral-800;
+    border-color: rgba(38, 38, 38, 0.8);
   }
   body {
-    @apply bg-[#0a0a0a] text-neutral-100 antialiased selection:bg-neutral-800 selection:text-white;
+    background-color: #0a0a0a;
+    color: #f5f5f5;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 }
