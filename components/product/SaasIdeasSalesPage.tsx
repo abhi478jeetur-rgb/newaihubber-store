@@ -54,7 +54,7 @@ export const SaasIdeasSalesPage: React.FC<SaasIdeasSalesPageProps> = ({ product 
   const [activePreviewTab, setActivePreviewTab] = useState<'toc' | 'card' | 'economics' | 'stack' | 'scorecard' | 'plan'>('toc');
 
   // Selected Language Edition Preview Toggle
-  const [selectedLanguage, setSelectedLanguage] = useState<'hinglish' | 'english'>('hinglish');
+  const [selectedLanguage, setSelectedLanguage] = useState<'hinglish' | 'english'>('english');
 
   // Interactive Idea Scorecard State
   const [scorecardChecks, setScorecardChecks] = useState<Record<string, boolean>>({
@@ -153,23 +153,23 @@ export const SaasIdeasSalesPage: React.FC<SaasIdeasSalesPageProps> = ({ product 
             {/* Prominent Edition Tag */}
             <div className="inline-flex flex-wrap items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#EFECE3] border border-[#D8D2C3] text-[11px] font-mono font-bold tracking-wider text-[#38453E] uppercase shadow-2xl">
               <span className="w-2 h-2 rounded-full bg-[#D35A2A] animate-pulse" />
-              <span>2026 EDITION · 50 IDEAS · 8 MARKETS · NO-CODE</span>
+              <span>2026 EDITION · 50 IDEAS · 8 MARKETS · ZERO CODING</span>
             </div>
 
-            {/* Sharp One-Line Promise Headline */}
+            {/* Sharp One-Line Promise Headline (100% English) */}
             <div className="space-y-3">
               <h1
                 className="text-3xl sm:text-5xl lg:text-6xl font-normal text-[#17251E] tracking-tight leading-[1.1]"
                 style={{ fontFamily: "'Newsreader', Georgia, serif" }}
               >
-                15 मिनट में अपना अगला <span className="underline decoration-[#D35A2A] decoration-wavy underline-offset-4 font-semibold">Buildable SaaS Idea</span> ढूंढें — बिना किसी कोडिंग के!
+                Find Your Next <span className="underline decoration-[#D35A2A] decoration-wavy underline-offset-4 font-semibold">Buildable Micro-SaaS Idea</span> in 15 Minutes — Zero Coding Required.
               </h1>
               <p className="text-base sm:text-lg text-[#47544C] leading-relaxed font-normal">
-                Indian Freelancers, Students & Aspiring Solopreneurs के लिए बनाई गई व्यावहारिक प्लेबुक। 50 इवैल्यूएटेड आइडियाज, 8 मार्केट कैटेगरीज और exact No-Code टूल स्टैक के साथ।
+                The non-technical founder's playbook for freelancers, indie hackers, students, and solopreneurs. Packed with 50 evaluated business blueprints, 8 market categories, and exact visual no-code tech stacks.
               </p>
             </div>
 
-            {/* Above-The-Fold 3 High-Impact Bullet Points */}
+            {/* Above-The-Fold 3 High-Impact Bullet Points (English) */}
             <div className="space-y-3 pt-1">
               <div className="flex items-start gap-3 p-3 rounded-xl bg-white/80 border border-[#E4DFD3]">
                 <div className="p-1 rounded-full bg-[#183526]/10 text-[#183526] shrink-0 mt-0.5">
@@ -177,7 +177,7 @@ export const SaasIdeasSalesPage: React.FC<SaasIdeasSalesPageProps> = ({ product 
                 </div>
                 <div>
                   <strong className="text-xs font-bold uppercase text-[#17251E] block">Who It's For:</strong>
-                  <p className="text-xs sm:text-sm text-[#47544C]">Freelancers, College Students, Agencies & Non-Tech Founders जो recurring revenue बनाना चाहते हैं।</p>
+                  <p className="text-xs sm:text-sm text-[#47544C]">Freelancers, college students, agencies & non-tech founders looking to build recurring subscription revenue.</p>
                 </div>
               </div>
 
@@ -187,7 +187,7 @@ export const SaasIdeasSalesPage: React.FC<SaasIdeasSalesPageProps> = ({ product 
                 </div>
                 <div>
                   <strong className="text-xs font-bold uppercase text-[#17251E] block">What You Get:</strong>
-                  <p className="text-xs sm:text-sm text-[#47544C]">50 SaaS Blueprints + 5-Point Idea Scorecard + 14-Day Validation Guide + **Full English & Hinglish PDFs**।</p>
+                  <p className="text-xs sm:text-sm text-[#47544C]">50 evaluated SaaS Blueprints + 5-Point Idea Scorecard + 14-Day Validation Guide + **Full English & Hinglish PDFs**.</p>
                 </div>
               </div>
 
@@ -197,7 +197,7 @@ export const SaasIdeasSalesPage: React.FC<SaasIdeasSalesPageProps> = ({ product 
                 </div>
                 <div>
                   <strong className="text-xs font-bold uppercase text-[#17251E] block">Why It's Different:</strong>
-                  <p className="text-xs sm:text-sm text-[#47544C]">Random AI list नहीं — हर आइडिया में Problem, Audience, Pricing ($9-$29/mo) और Softr + Airtable + Make का exact stack शामिल है।</p>
+                  <p className="text-xs sm:text-sm text-[#47544C]">Not generic ChatGPT lists — every idea includes explicit Problem, Target Audience, Pricing ($9–$29/mo), and No-Code Stack (Softr + Airtable + Make + Stripe).</p>
                 </div>
               </div>
             </div>
@@ -219,11 +219,11 @@ export const SaasIdeasSalesPage: React.FC<SaasIdeasSalesPageProps> = ({ product 
                     <span className="text-sm text-[#728077] line-through">₹1,499</span>
                     <span className="text-xs font-mono font-bold uppercase text-[#D35A2A] bg-[#D35A2A]/10 px-2 py-0.5 rounded">66% OFF</span>
                   </div>
-                  <p className="text-[11px] text-[#59665E] mt-0.5">~$29 USD · One-time payment · Lifetime Access</p>
+                  <p className="text-[11px] text-[#59665E] mt-0.5">~$29 USD · One-Time Payment · Lifetime Access</p>
                 </div>
               </div>
 
-              {/* India Payment Trust Microcopy */}
+              {/* Payment Trust Microcopy */}
               <div className="flex flex-wrap items-center justify-center sm:justify-start gap-3 pt-1 text-[11px] font-medium text-[#59665E]">
                 <span className="flex items-center gap-1">
                   <Zap className="w-3.5 h-3.5 text-amber-600" /> Instant PDF Download
@@ -234,14 +234,14 @@ export const SaasIdeasSalesPage: React.FC<SaasIdeasSalesPageProps> = ({ product 
                 </span>
                 <span>•</span>
                 <span className="flex items-center gap-1">
-                  <ShieldCheck className="w-3.5 h-3.5 text-blue-700" /> 100% Safe Checkout
+                  <ShieldCheck className="w-3.5 h-3.5 text-blue-700" /> 100% Secure Checkout
                 </span>
               </div>
             </div>
 
           </div>
 
-          {/* Right Column: 3D Product Mockup & Edition Badge */}
+          {/* Right Column: 3D Product Mockup & Edition Switcher */}
           <div className="lg:col-span-5 flex flex-col items-center justify-center space-y-4">
             <div className="relative w-full max-w-[320px] sm:max-w-[380px] aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl border-4 border-white bg-white group transform hover:scale-[1.02] transition-transform">
               <Image
@@ -268,16 +268,6 @@ export const SaasIdeasSalesPage: React.FC<SaasIdeasSalesPageProps> = ({ product 
               </div>
               <div className="grid grid-cols-2 gap-1.5 pt-1">
                 <button
-                  onClick={() => setSelectedLanguage('hinglish')}
-                  className={`px-3 py-2 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
-                    selectedLanguage === 'hinglish'
-                      ? 'bg-[#183526] text-white shadow-sm'
-                      : 'bg-[#EFECE3] text-[#4A5750] hover:bg-[#E4DFD3]'
-                  }`}
-                >
-                  <span>🇮🇳 Hinglish PDF</span>
-                </button>
-                <button
                   onClick={() => setSelectedLanguage('english')}
                   className={`px-3 py-2 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
                     selectedLanguage === 'english'
@@ -287,11 +277,21 @@ export const SaasIdeasSalesPage: React.FC<SaasIdeasSalesPageProps> = ({ product 
                 >
                   <span>🌐 English PDF</span>
                 </button>
+                <button
+                  onClick={() => setSelectedLanguage('hinglish')}
+                  className={`px-3 py-2 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
+                    selectedLanguage === 'hinglish'
+                      ? 'bg-[#183526] text-white shadow-sm'
+                      : 'bg-[#EFECE3] text-[#4A5750] hover:bg-[#E4DFD3]'
+                  }`}
+                >
+                  <span>🇮🇳 Hinglish PDF</span>
+                </button>
               </div>
               <p className="text-[11px] text-[#728077] italic">
-                {selectedLanguage === 'hinglish'
-                  ? '✓ Hinglish Edition: Easy Hindi + English blend for fast understanding.'
-                  : '✓ English Edition: Full global standard English reference guide.'}
+                {selectedLanguage === 'english'
+                  ? '✓ English Edition: Complete global standard handbook reference.'
+                  : '✓ Hinglish Edition: Conversational edition for ultra-fast comprehension.'}
               </p>
             </div>
 
@@ -299,7 +299,7 @@ export const SaasIdeasSalesPage: React.FC<SaasIdeasSalesPageProps> = ({ product 
 
         </section>
 
-        {/* 3. PAIN POINT / PROBLEM SECTION ("Why 90% Founders Fail") */}
+        {/* 3. PAIN POINT / PROBLEM SECTION */}
         <section className="space-y-8 pt-4">
           <div className="text-center max-w-2xl mx-auto space-y-3">
             <span className="text-xs font-mono uppercase tracking-widest text-[#D35A2A] font-bold">THE HARD TRUTH</span>
@@ -307,10 +307,10 @@ export const SaasIdeasSalesPage: React.FC<SaasIdeasSalesPageProps> = ({ product 
               className="text-3xl sm:text-4xl font-normal text-[#17251E]"
               style={{ fontFamily: "'Newsreader', Georgia, serif" }}
             >
-              90% No-Code Builders 3 महीने और ₹50,000 बर्बादी करते हैं — क्योंकि वे गलत आइडिया चुनते हैं!
+              Why 90% of First-Time Founders Waste 3 Months & $1,000+ on the Wrong Idea
             </h2>
             <p className="text-sm text-[#59665E]">
-              बिना वैलिडेशन के कोडिंग या नो-कोड बिल्ड शुरू करना सबसे बड़ी भूल है। यहाँ देखें कि ज्यादातर नए लोग कहाँ अटकते हैं:
+              Building before validating demand is the single most expensive mistake. Here is where most aspiring builders get stuck:
             </p>
           </div>
 
@@ -318,19 +318,19 @@ export const SaasIdeasSalesPage: React.FC<SaasIdeasSalesPageProps> = ({ product 
             <div className="p-6 rounded-2xl border border-[#DCD6C8] bg-white space-y-3 shadow-sm hover:border-[#183526] transition-colors">
               <div className="w-10 h-10 rounded-xl bg-red-100 text-red-700 flex items-center justify-center font-bold text-lg">1</div>
               <h3 className="font-bold text-base text-[#17251E]">Generic AI Idea Lists</h3>
-              <p className="text-xs sm:text-sm text-[#59665E]">ChatGPT से मिली लिस्ट में प्रॉब्लम स्टेटमेंट, टारगेट कस्टमर या प्राइसिंग का कोई प्रैक्टिकल रोडमैप नहीं होता।</p>
+              <p className="text-xs sm:text-sm text-[#59665E]">Raw ChatGPT prompts lack real problem statements, pricing models, defensible edges, or target customer clarity.</p>
             </div>
 
             <div className="p-6 rounded-2xl border border-[#DCD6C8] bg-white space-y-3 shadow-sm hover:border-[#183526] transition-colors">
               <div className="w-10 h-10 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center font-bold text-lg">2</div>
               <h3 className="font-bold text-base text-[#17251E]">Over-Engineering Before 1st User</h3>
-              <p className="text-xs sm:text-sm text-[#59665E]">पहले कस्टमर से ₹1 मिलने से पहले 2 महीने तक फीचर्स बनाते रहना और बाद में पता चलना कि किसी को ज़रूरत ही नहीं थी।</p>
+              <p className="text-xs sm:text-sm text-[#59665E]">Spending 2 months coding features before earning your first dollar, only to discover nobody needed the product.</p>
             </div>
 
             <div className="p-6 rounded-2xl border border-[#DCD6C8] bg-white space-y-3 shadow-sm hover:border-[#183526] transition-colors">
               <div className="w-10 h-10 rounded-xl bg-blue-100 text-blue-800 flex items-center justify-center font-bold text-lg">3</div>
               <h3 className="font-bold text-base text-[#17251E]">No Validation Framework</h3>
-              <p className="text-xs sm:text-sm text-[#59665E]">बिना 5-Point Scorecard के आइडिया से प्यार कर बैठना और सही ऑडियंस तक पहुचने का मैसेजिंग रोडमैप न होना।</p>
+              <p className="text-xs sm:text-sm text-[#59665E]">Falling in love with an idea without scoring it against user willingness-to-pay or having a pre-build outreach plan.</p>
             </div>
           </div>
         </section>
@@ -343,10 +343,10 @@ export const SaasIdeasSalesPage: React.FC<SaasIdeasSalesPageProps> = ({ product 
               className="text-3xl sm:text-5xl font-normal text-white tracking-tight"
               style={{ fontFamily: "'Newsreader', Georgia, serif" }}
             >
-              यह किताब आपको आइडिया सोचने से लेकर पहले 10 Paying Customers पाने का क्लियर रास्ता देती है।
+              Zero Coding Required. Proven Validation. Dual Language Access.
             </h2>
             <p className="text-sm sm:text-base text-[#C3D1C8] leading-relaxed">
-              आपको भारी-भरकम कोडिंग या डेवलपर टीम की जरूरत नहीं है। इस हैंडबुक में Softr, Airtable, Make, Tally और Stripe के साथ ₹0-₹20/माह के बजट पर प्रोडक्ट बनाना सिखाया गया है।
+              You don't need a computer science degree or expensive software developers. This handbook guides you step-by-step through building functional software MVPs using visual tools like Softr, Airtable, Make, Tally, and Stripe — on a starting budget of $0 to $20/month.
             </p>
           </div>
 
@@ -357,7 +357,7 @@ export const SaasIdeasSalesPage: React.FC<SaasIdeasSalesPageProps> = ({ product 
             </div>
             <div className="space-y-1">
               <span className="text-2xl font-bold text-amber-400">8</span>
-              <p className="text-xs text-[#C3D1C8]">High-Growth Market Niche Categories</p>
+              <p className="text-xs text-[#C3D1C8]">High-Growth Niche Market Categories</p>
             </div>
             <div className="space-y-1">
               <span className="text-2xl font-bold text-amber-400">14 Days</span>
@@ -370,7 +370,7 @@ export const SaasIdeasSalesPage: React.FC<SaasIdeasSalesPageProps> = ({ product 
           </div>
         </section>
 
-        {/* 5. 50 OPPORTUNITIES & INDIA-SPECIFIC EXAMPLES */}
+        {/* 5. 50 OPPORTUNITIES & NICHE MARKET BLUEPRINTS */}
         <section className="space-y-8 pt-4">
           <div className="space-y-2">
             <span className="text-xs font-mono uppercase tracking-widest text-[#D35A2A] font-bold">EXPLORE ALL 50 IDEAS</span>
@@ -378,10 +378,10 @@ export const SaasIdeasSalesPage: React.FC<SaasIdeasSalesPageProps> = ({ product 
               className="text-3xl sm:text-4xl font-normal text-[#17251E]"
               style={{ fontFamily: "'Newsreader', Georgia, serif" }}
             >
-              50 Opportunities Across 8 Proven Markets
+              50 Evaluated Opportunities Across 8 Proven Markets
             </h2>
             <p className="text-sm text-[#59665E]">
-              अपनी पसंद और मार्केट समझ के अनुसार आइडिया चुनें। हर आइडिया में प्रॉब्लम, सॉल्यूशन, टारगेट ऑडियंस और नो-कोड स्टैक शामिल है:
+              Browse ideas by market category. Every concept includes a defined problem, target audience, pricing model, complexity rating, and exact visual tech stack:
             </p>
           </div>
 
@@ -468,7 +468,7 @@ export const SaasIdeasSalesPage: React.FC<SaasIdeasSalesPageProps> = ({ product 
           {filteredIdeas.length > 8 && (
             <div className="p-4 rounded-xl bg-[#EFECE3] border border-[#D8D2C3] text-center">
               <p className="text-xs font-semibold text-[#38453E]">
-                + {filteredIdeas.length - 8} more evaluated SaaS blueprints included inside the full book!
+                + {filteredIdeas.length - 8} more evaluated SaaS blueprints included inside the full handbook!
               </p>
             </div>
           )}
@@ -482,14 +482,14 @@ export const SaasIdeasSalesPage: React.FC<SaasIdeasSalesPageProps> = ({ product 
               className="text-3xl sm:text-4xl font-normal text-[#17251E]"
               style={{ fontFamily: "'Newsreader', Georgia, serif" }}
             >
-              Freelancers & Builders What Are Saying
+              What Freelancers & Builders Are Saying
             </h2>
             <p className="text-sm text-[#59665E]">
-              देखें कि कैसे Indian Builders और Solopreneurs ने इस बुक के फ्रेमवर्क से फायदा उठाया:
+              See how indie hackers, freelancers, and students validated their products using this playbook:
             </p>
           </div>
 
-          {/* Testimonials Grid */}
+          {/* Testimonials Grid (100% English) */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             
             <div className="p-6 rounded-2xl border border-[#DCD6C8] bg-white space-y-4 shadow-sm flex flex-col justify-between">
@@ -500,7 +500,7 @@ export const SaasIdeasSalesPage: React.FC<SaasIdeasSalesPageProps> = ({ product 
                   ))}
                 </div>
                 <p className="text-xs sm:text-sm text-[#38453E] leading-relaxed italic">
-                  &ldquo;पहले मैं सिर्फ क्लाइंट्स के लिए ग्राफिक डिजाइनिंग करता था। बुक की Idea #4 (WhatsApp Invoice Tool) पढ़कर मैंने Softr + Airtable पर MVP बनाया और 14 दिन में 8 paid users मिल गए!&rdquo;
+                  &ldquo;Instead of trading hours for client work, I built a WhatsApp invoice generator MVP using Softr + Airtable from Idea #4 and landed 8 paid users in 14 days!&rdquo;
                 </p>
               </div>
               <div className="pt-3 border-t border-[#EFECE3]">
@@ -517,7 +517,7 @@ export const SaasIdeasSalesPage: React.FC<SaasIdeasSalesPageProps> = ({ product 
                   ))}
                 </div>
                 <p className="text-xs sm:text-sm text-[#38453E] leading-relaxed italic">
-                  &ldquo;Hinglish Edition ने मेरा काम 3 गुणा आसान कर दिया। Tech jargon समझने में जो टाइम खराब होता था, वो बच गया। 5-Point Scorecard हर नो-कोड बिल्डर के पास होना चाहिए।&rdquo;
+                  &ldquo;The 5-Point Scorecard saved me months of wasted effort. Having both English and Hinglish editions made understanding SaaS unit economics super fast.&rdquo;
                 </p>
               </div>
               <div className="pt-3 border-t border-[#EFECE3]">
@@ -534,7 +534,7 @@ export const SaasIdeasSalesPage: React.FC<SaasIdeasSalesPageProps> = ({ product 
                   ))}
                 </div>
                 <p className="text-xs sm:text-sm text-[#38453E] leading-relaxed italic">
-                  &ldquo;मैंने अपनी डिजिटल एजेंसी के क्लाइंट workflows को नो-कोड टूल में पैकेज किया। इस हैंडबुक की वैलिडेटिंग मैसेज स्क्रिप्ट्स ने 1st week में ही परिणाम दिए।&rdquo;
+                  &ldquo;I packaged our agency's internal client workflows into a recurring micro-SaaS tool. The validation outreach scripts alone paid for the book 100x over.&rdquo;
                 </p>
               </div>
               <div className="pt-3 border-t border-[#EFECE3]">
@@ -553,7 +553,7 @@ export const SaasIdeasSalesPage: React.FC<SaasIdeasSalesPageProps> = ({ product 
             <div className="space-y-1">
               <h4 className="font-bold text-sm text-[#17251E]">Created by NewAIHubber Team</h4>
               <p className="text-xs text-[#59665E]">
-                500+ से अधिक नो-कोड इंप्लीमेंटेशन्स और रियल-वर्ल्ड AI ऑटोमेशन वर्कफ़्लो पर आधारित। हमारा लक्ष्य नॉन-टेक्निकल फाउंडर्स को सफल बनाना है।
+                Grounded in 500+ real-world no-code workflow implementations. Our mission is to empower non-technical builders to launch cash-flow positive software tools.
               </p>
             </div>
           </div>
@@ -567,9 +567,9 @@ export const SaasIdeasSalesPage: React.FC<SaasIdeasSalesPageProps> = ({ product 
               className="text-3xl sm:text-4xl font-normal text-[#17251E]"
               style={{ fontFamily: "'Newsreader', Georgia, serif" }}
             >
-              See What's Inside the Handbook
+              See What's Inside the Playbook
             </h2>
-            <p className="text-sm text-[#59665E]">किताब के अंदर दिए गए 6 प्रमुख चैप्टर्स और फ्रेमवर्क्स का प्रीव्यू देखें:</p>
+            <p className="text-sm text-[#59665E]">Preview six real chapters, frameworks, and roadmap blueprints from the book:</p>
           </div>
 
           <div className="flex items-center gap-2 overflow-x-auto no-scrollbar touch-pan-x flex-nowrap pb-1">
@@ -612,7 +612,7 @@ export const SaasIdeasSalesPage: React.FC<SaasIdeasSalesPageProps> = ({ product 
             {activePreviewTab === 'card' && (
               <div className="space-y-3 text-xs sm:text-sm text-[#38453E]">
                 <h3 className="font-bold text-base text-[#17251E]">Sample Idea Card Structure</h3>
-                <p>हर आइडिया कार्ड में यह 8 चीजें स्पष्ट लिखी होती हैं:</p>
+                <p>Every idea blueprint details the following 8 essential data points:</p>
                 <div className="grid grid-cols-2 gap-2 text-xs pt-1">
                   <span className="p-2 bg-[#EFECE3] rounded">✓ 1. Problem Statement</span>
                   <span className="p-2 bg-[#EFECE3] rounded">✓ 2. Core Solution</span>
@@ -629,28 +629,28 @@ export const SaasIdeasSalesPage: React.FC<SaasIdeasSalesPageProps> = ({ product 
             {activePreviewTab === 'economics' && (
               <div className="space-y-3 text-xs sm:text-sm text-[#38453E]">
                 <h3 className="font-bold text-base text-[#17251E]">Micro SaaS Pricing & Unit Economics</h3>
-                <p>100 Paying Users at $19/month = $1,900 (~₹1,50,000/month) recurring revenue with 90%+ profit margins using free/low-cost tools.</p>
+                <p>100 Paying Users at $19/month = $1,900 (~₹1,50,000/month) recurring revenue with 90%+ profit margins using free/low-cost visual tools.</p>
               </div>
             )}
 
             {activePreviewTab === 'stack' && (
               <div className="space-y-3 text-xs sm:text-sm text-[#38453E]">
                 <h3 className="font-bold text-base text-[#17251E]">The Recommended $0-$20 No-Code Stack</h3>
-                <p>Airtable (Database) + Softr (Web App Interface) + Make.com (Automation Workflows) + Razorpay/Stripe (Payments).</p>
+                <p>Airtable (Relational Database) + Softr (Web App Interface) + Make.com (Automation Workflows) + Razorpay/Stripe (Payment Gateways).</p>
               </div>
             )}
 
             {activePreviewTab === 'scorecard' && (
               <div className="space-y-3 text-xs sm:text-sm text-[#38453E]">
                 <h3 className="font-bold text-base text-[#17251E]">5-Point Idea Selection Scorecard (ISC)</h3>
-                <p>4 या ज्यादा सही टिक मिलने पर ही आगे बिल्ड करें, अन्यथा दूसरा आइडिया चुनें।</p>
+                <p>Score 4 or more ticks before spending a single day building. Move on if 3 or fewer criteria are met.</p>
               </div>
             )}
 
             {activePreviewTab === 'plan' && (
               <div className="space-y-3 text-xs sm:text-sm text-[#38453E]">
                 <h3 className="font-bold text-base text-[#17251E]">90-Day Execution Roadmap</h3>
-                <p>Days 1-14: Validation & Outreach · Days 15-45: MVP Build · Days 46-90: First 10 Customers Acquisition.</p>
+                <p>Days 1-14: Pre-Build Validation & Outreach · Days 15-45: Visual MVP Build · Days 46-90: First 10 Customer Acquisition.</p>
               </div>
             )}
           </div>
@@ -667,17 +667,17 @@ export const SaasIdeasSalesPage: React.FC<SaasIdeasSalesPageProps> = ({ product 
               Don't Choose With Your Gut. Score the Idea First!
             </h2>
             <p className="text-sm text-[#59665E]">
-              अपने आइडिया को नीचे दिए गए 5 पॉइंट्स पर टेस्ट करें। 4 या ज्यादा टिक मिलने पर ही बिल्ड शुरू करें:
+              Test your candidate idea against the 5 criteria below. Build only if 4 or more boxes are ticked:
             </p>
           </div>
 
           <div className="space-y-3">
             {[
-              { key: 'narrowAudience', label: 'Narrow Audience: क्या आपकी टारगेट ऑडियंस स्पष्ट है? ("Freelancers" के बजाय "Graphic Designers in India")' },
-              { key: 'recurringPain', label: 'Recurring Pain: क्या समस्या हर हफ्ते/महीने दोबारा होती है?' },
-              { key: 'workaroundInefficiency', label: 'Workaround Inefficiency: क्या वर्तमान मैनुअल तरीका समय बर्बाद करने वाला है?' },
-              { key: 'willingnessToPay', label: 'Willingness to Pay: क्या यह ऑडियंस पहले से सॉफ्टवेयर टूल्स के लिए पैसे देती है?' },
-              { key: 'noCodeFeasibility', label: 'No-Code Feasibility: क्या MVP को Softr, Airtable और Make से आसानी से बनाया जा सकता है?' },
+              { key: 'narrowAudience', label: 'Narrow Audience: Can you precisely define the target user? ("Graphic Designers in India" vs "Businesses")' },
+              { key: 'recurringPain', label: 'Recurring Pain: Does the problem happen weekly or monthly, creating consistent software demand?' },
+              { key: 'workaroundInefficiency', label: 'Workaround Inefficiency: Is the current manual process messy, slow, and error-prone?' },
+              { key: 'willingnessToPay', label: 'Willingness to Pay: Does this target audience already pay for digital software tools?' },
+              { key: 'noCodeFeasibility', label: 'No-Code Feasibility: Can the MVP be built realistically using visual tools like Softr, Airtable & Make?' },
             ].map((item) => {
               const isChecked = scorecardChecks[item.key];
               return (
@@ -721,7 +721,7 @@ export const SaasIdeasSalesPage: React.FC<SaasIdeasSalesPageProps> = ({ product 
           </div>
         </section>
 
-        {/* 9. PRICING & INDIA PAYMENT TRUST CARD */}
+        {/* 9. PRICING & PAYMENT TRUST CARD */}
         <section id="checkout" className="p-8 sm:p-14 rounded-3xl border border-[#183526] bg-[#183526] text-white text-center space-y-8 shadow-2xl">
           <div className="max-w-2xl mx-auto space-y-3">
             <span className="text-xs font-mono uppercase tracking-widest text-[#A1B3A7] font-bold">LIMITED TIME LAUNCH OFFER</span>
@@ -729,10 +729,10 @@ export const SaasIdeasSalesPage: React.FC<SaasIdeasSalesPageProps> = ({ product 
               className="text-3xl sm:text-5xl font-normal text-white tracking-tight"
               style={{ fontFamily: "'Newsreader', Georgia, serif" }}
             >
-              आज ही अपना SaaS सफ़र शुरू करें।
+              Start Building Your Software Business Today.
             </h2>
             <p className="text-sm text-[#C3D1C8]">
-              आपको 1 ही ख़रीद में **English + Hinglish दोनों एडिशन्स** का फुल एक्सेस तुरंत मिलेगा।
+              Receive instant access to **BOTH English & Hinglish PDF/ePub editions** with a single purchase.
             </p>
           </div>
 
@@ -770,7 +770,7 @@ export const SaasIdeasSalesPage: React.FC<SaasIdeasSalesPageProps> = ({ product 
           </div>
         </section>
 
-        {/* 10. COMPREHENSIVE FAQ SECTION */}
+        {/* 10. COMPREHENSIVE FAQ SECTION (100% ENGLISH) */}
         <section className="space-y-8 pt-4 border-t border-[#E4DFD3]">
           <div className="space-y-2">
             <span className="text-xs font-mono uppercase tracking-widest text-[#D35A2A] font-bold">FREQUENTLY ASKED QUESTIONS</span>
@@ -778,35 +778,35 @@ export const SaasIdeasSalesPage: React.FC<SaasIdeasSalesPageProps> = ({ product 
               className="text-3xl sm:text-4xl font-normal text-[#17251E]"
               style={{ fontFamily: "'Newsreader', Georgia, serif" }}
             >
-              अक्सर पूछे जाने वाले सवाल (FAQ)
+              Frequently Asked Questions
             </h2>
           </div>
 
           <div className="space-y-3">
             {[
               {
-                question: '1. क्या ये SaaS Ideas पहले से saturated हैं?',
-                answer: 'नहीं। इस बुक में दिए गए आइडियाज बहुत ही Narrow Niche Markets के लिए हैं (जैसे Indian Freelancers के लिए WhatsApp Invoicing या Local Clinics के लिए Softr CRM)। ये बड़ी ब्रॉड कंपनियों के लिए छोटे मार्केट्स हैं, लेकिन solo builder के लिए $1,000–$3,000/month कमाने का सबसे अच्छा अवसर हैं।',
+                question: '1. Are these Micro-SaaS ideas already saturated?',
+                answer: 'No. The 50 ideas inside this handbook are specifically chosen for narrow niche markets (e.g. WhatsApp Invoicing for Freelancers or Softr CRMs for Local Businesses). These markets are too small for giant venture-backed software companies, making them ideal $1,000–$3,000/month recurring income opportunities for solo builders.',
               },
               {
-                question: '2. क्या मैं बिना किसी कोडिंग या प्रोग्रामिंग अनुभव के भी इसे बना सकता हूँ?',
-                answer: 'हाँ, बिल्कुल! यह हैंडबुक खास तौर पर नॉन-टेक्निकल बिगिनर्स के लिए लिखी गई है। सभी 50 आइडियाज drag-and-drop Visual Tools (Softr, Airtable, Make.com, Tally) के साथ डिज़ाइन किए गए हैं।',
+                question: '2. Do I need any coding or programming experience?',
+                answer: 'Not at all. This playbook is written specifically for non-technical beginners. All 50 ideas are designed around visual drag-and-drop tools like Softr, Airtable, Make.com, Tally, and Stripe.',
               },
               {
-                question: '3. क्या इसमें वास्तविक वैलिडेटिंग स्टेप्स मिलेंगे या यह सिर्फ आइडियाज की लिस्ट है?',
-                answer: 'यह सिर्फ लिस्ट नहीं है! हर आइडिया में exact Problem, Target Audience, Pricing, Risk Factor और Defensible Edge दिया गया है। साथ ही बुक में 14-Day Pre-Build Validation Process और 4 Ready-to-Send Outreach Message Scripts शामिल हैं।',
+                question: '3. Will I get actual validation steps or is it just an idea list?',
+                answer: 'This is not just a list. Every single idea is structured with a defined problem statement, narrow target audience, core MVP features, suggested visual stack, pricing model, complexity rating, and risk factor. You also receive the 14-Day Validation Framework and 4 Ready-to-Send Outreach Message Scripts.',
               },
               {
-                question: '4. क्या शुरू करने के लिए महंगे सॉफ्टवेयर टूल्स खरीदने होंगे?',
-                answer: 'नहीं। किताब में $0–$20/month का बिगिनर स्टैक बताया गया है जो ज्यादातर टूल्स के फ्री टियर्स (Free Tiers) का इस्तेमाल करता है। जब आपको पहले Paying Users मिल जाएं, तब ही अपग्रेड करें।',
+                question: '4. Do I need expensive software tools to start building?',
+                answer: 'No. The book outlines a starting budget stack ($0–$20/month) utilizing free tiers. You only upgrade to paid plans after securing your first paying customers.',
               },
               {
-                question: '5. क्या एक ही ख़रीद में English और Hinglish दोनों एडिशन्स शामिल हैं?',
-                answer: 'हाँ! एक बार ख़रीदने पर आपको फुल English Edition PDF + ePub और फुल Hinglish Edition PDF + ePub दोनों का इंस्टेंट डाउनलोड एक्सेस मिलता है।',
+                question: '5. Are both English and Hinglish editions included in one purchase?',
+                answer: 'Yes! One purchase grants you instant download access to BOTH the full English Edition (PDF & ePub) and the full Hinglish Edition (PDF & ePub).',
               },
               {
-                question: '6. पेमेंट के बाद डिलीवरी कैसे होती है और रिफंड/सपोर्ट पॉलिसी क्या है?',
-                answer: 'पेमेंट पूरा होते ही आपके ईमेल पर और स्क्रीन पर तुरंत PDF डाउनलोड लिंक मिल जाता है। अगर डाउनलोड में कोई समस्या आती है, तो हमारी सपोर्ट टीम (support@newaihubber.com) 24 घंटे के अंदर मदद करती है।',
+                question: '6. How does instant digital delivery work and what is the support policy?',
+                answer: 'Upon completing your purchase, your download link is delivered immediately on-screen and to your email address. If you experience any download issues, our support desk (support@newaihubber.com) assists you within 24 hours.',
               },
             ].map((faqItem, idx) => {
               const isOpen = openFaq === idx;
