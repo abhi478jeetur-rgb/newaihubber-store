@@ -70,3 +70,27 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* Theme Toggle Circular Wave Sweep Animation */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-old(root) {
+  z-index: 1;
+}
+::view-transition-new(root) {
+  z-index: 9999;
+  animation: theme-wave-reveal 0.75s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes theme-wave-reveal {
+  from {
+    clip-path: circle(0px at var(--theme-x, 90vw) var(--theme-y, 40px));
+  }
+  to {
+    clip-path: circle(170vmax at var(--theme-x, 90vw) var(--theme-y, 40px));
+  }
+}
+

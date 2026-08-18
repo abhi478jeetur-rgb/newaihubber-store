@@ -8,7 +8,7 @@ interface StoreHeaderProps {
   searchQuery: string;
   onSearchChange: (query: string) => void;
   theme: 'light' | 'dark';
-  onToggleTheme: () => void;
+  onToggleTheme: (e?: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 export const StoreHeader: React.FC<StoreHeaderProps> = ({

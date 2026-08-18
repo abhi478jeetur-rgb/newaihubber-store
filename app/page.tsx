@@ -1,12 +1,13 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { StoreHeader } from '@/components/store/StoreHeader';
 import { CategoryNav } from '@/components/store/CategoryNav';
 import { ProductCard } from '@/components/store/ProductCard';
 import { CategorySlug, Product } from '@/types/product';
 import { getFilteredProducts } from '@/lib/products';
 import { PackageOpen, Sparkles } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function StoreHomePage() {
   const [activeCategory, setActiveCategory] = useState<CategorySlug>('all');
@@ -17,6 +18,14 @@ export default function StoreHomePage() {
   // Default mode is LIGHT as requested by user ("default roop se white mode me hi rahega")
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
+  // Wave transition animation overlay state
+  const [waveAnimation, setWaveAnimation] = useState<{
+    active: boolean;
+    x: number;
+    y: number;
+    targetTheme: 'light' | 'dark';
+  } | null>(null);
+
   // Load theme preference from localStorage on mount (defaults to light)
   useEffect(() => {
     const savedTheme = localStorage.getItem('store_theme') as 'light' | 'dark' | null;
@@ -25,10 +34,50 @@ export default function StoreHomePage() {
     }
   }, []);
 
-  const toggleTheme = () => {
+  const toggleTheme = (e?: React.MouseEvent<HTMLButtonElement>) => {
     const nextTheme = theme === 'light' ? 'dark' : 'light';
-    setTheme(nextTheme);
-    localStorage.setItem('store_theme', nextTheme);
+    
+    // Get origin coordinates from click or default to top-right
+    let x = window.innerWidth * 0.9;
+    let y = 40;
+
+    if (e && e.clientX && e.clientY) {
+      x = e.clientX;
+      y = e.clientY;
+    }
+
+    // Set CSS custom variables for View Transitions API
+    if (typeof document !== 'undefined') {
+      document.documentElement.style.setProperty('--theme-x', `${x}px`);
+      document.documentElement.style.setProperty('--theme-y', `${y}px`);
+    }
+
+    // Check for native View Transition support
+    const doc = document as any;
+    if (doc.startViewTransition) {
+      doc.startViewTransition(() => {
+        setTheme(nextTheme);
+        localStorage.setItem('store_theme', nextTheme);
+      });
+    } else {
+      // Fallback: Trigger React Wave animation overlay sweep
+      setWaveAnimation({
+        active: true,
+        x,
+        y,
+        targetTheme: nextTheme,
+      });
+
+      // Switch theme mid-wave for ultra-smooth transition
+      setTimeout(() => {
+        setTheme(nextTheme);
+        localStorage.setItem('store_theme', nextTheme);
+      }, 250);
+
+      setTimeout(() => {
+        setWaveAnimation(null);
+      }, 750);
+    }
   };
 
   useEffect(() => {
@@ -45,11 +94,32 @@ export default function StoreHomePage() {
 
   return (
     <div
-      className={`min-h-screen flex flex-col transition-colors duration-300 ${
+      className={`relative min-h-screen flex flex-col transition-colors duration-300 overflow-x-hidden ${
         isLight ? 'bg-[#FAFAFA] text-neutral-900' : 'bg-[#0a0a0a] text-neutral-100'
       }`}
     >
       
+      {/* Dynamic Wave Expansion Overlay */}
+      <AnimatePresence>
+        {waveAnimation && waveAnimation.active && (
+          <motion.div
+            initial={{
+              clipPath: `circle(0px at ${waveAnimation.x}px ${waveAnimation.y}px)`,
+              opacity: 0.95,
+            }}
+            animate={{
+              clipPath: `circle(170vmax at ${waveAnimation.x}px ${waveAnimation.y}px)`,
+              opacity: 1,
+            }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.65, ease: [0.25, 1, 0.5, 1] }}
+            className={`fixed inset-0 z-[9999] pointer-events-none ${
+              waveAnimation.targetTheme === 'light' ? 'bg-[#FAFAFA]' : 'bg-[#0a0a0a]'
+            }`}
+          />
+        )}
+      </AnimatePresence>
+
       {/* Top Header & Search + Theme Switcher */}
       <StoreHeader
         searchQuery={searchQuery}
