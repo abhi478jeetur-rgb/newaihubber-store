@@ -278,7 +278,7 @@ export const EbookSalesPage: React.FC<EbookSalesPageProps> = ({ product }) => {
           <div className="lg:col-span-5 flex justify-center lg:justify-end">
             <div className="relative w-full max-w-[320px] sm:max-w-[360px] aspect-[3/4] rounded-2xl border border-neutral-800 bg-[#121212] overflow-hidden shadow-2xl group transition-all hover:border-emerald-500/40">
               <Image
-                src={product.animatedPreview.posterUrl || product.animatedPreview.url}
+                src="/50 saas idea mocup.png"
                 alt="50 Micro SaaS Ideas Book Cover"
                 fill
                 priority

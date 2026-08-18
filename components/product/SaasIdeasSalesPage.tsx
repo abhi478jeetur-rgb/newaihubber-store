@@ -182,7 +182,7 @@ export const SaasIdeasSalesPage: React.FC<SaasIdeasSalesPageProps> = ({ product 
           <div className="lg:col-span-5 flex justify-center lg:justify-end">
             <div className="relative w-full max-w-[340px] sm:max-w-[400px] aspect-[3/4] rounded-r-xl border border-[#D5CFBF] bg-[#183526] shadow-2xl overflow-hidden group transition-transform hover:scale-[1.01]">
               <Image
-                src={product.animatedPreview.posterUrl || product.animatedPreview.url}
+                src="/50 saas idea mocup.png"
                 alt="50 Micro SaaS Ideas Book Cover"
                 fill
                 priority

@@ -15,9 +15,9 @@ export const products: Product[] = [
     badge: 'Flagship Handbook',
     animatedPreview: {
       type: 'gif',
-      url: 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3ZkOGs2a2txNXFiY3MzeW1sbXVlNmFycHV4YmlrNWNmNmxuNXF4ayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3oKIPnAiaMCws8nOsE/giphy.gif',
-      posterUrl: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=800&auto=format&fit=crop',
-      aspectRatio: 'video',
+      url: '/50 saas idea thumbnail.png',
+      posterUrl: '/50 saas idea thumbnail.png',
+      aspectRatio: 'square',
     },
     landingPage: {
       heroTagline: 'Build your first profitable software product without writing a line of code or hiring expensive developers.',
