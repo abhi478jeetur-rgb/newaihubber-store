@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import { getProductBySlug, getAllProducts } from '@/lib/products';
 import { ProductLanding } from '@/components/product/ProductLanding';
-import { EbookSalesPage } from '@/components/product/EbookSalesPage';
+import { SaasIdeasSalesPage } from '@/components/product/SaasIdeasSalesPage';
 import {
   generateProductJsonLd,
   generateBreadcrumbJsonLd,
@@ -86,7 +86,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
       )}
 
       {is50SaasEbook ? (
-        <EbookSalesPage product={product} />
+        <SaasIdeasSalesPage product={product} />
       ) : (
         <ProductLanding product={product} />
       )}
