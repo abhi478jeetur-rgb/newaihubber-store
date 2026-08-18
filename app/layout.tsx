@@ -24,6 +24,11 @@ export const metadata: Metadata = {
     'NewAIHubber Store',
   ],
   authors: [{ name: 'NewAIHubber' }],
+  icons: {
+    icon: '/logo.png',
+    shortcut: '/logo.png',
+    apple: '/logo.png',
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
@@ -31,11 +36,20 @@ export const metadata: Metadata = {
     siteName: 'NewAIHubber Store',
     title: 'NewAIHubber Store | Curated Digital Products & AI Resources',
     description: 'Curated AI prompts, eBooks, templates, and digital resources.',
+    images: [
+      {
+        url: '/logo.png',
+        width: 1200,
+        height: 630,
+        alt: 'NewAIHubber Store Logo',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'NewAIHubber Store | Curated Digital Products & AI Resources',
     description: 'Curated AI prompts, eBooks, templates, and digital resources.',
+    images: ['/logo.png'],
   },
   alternates: {
     canonical: SITE_URL,

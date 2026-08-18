@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Search, X, Sun, Moon } from 'lucide-react';
 
 interface StoreHeaderProps {
@@ -31,12 +32,13 @@ export const StoreHeader: React.FC<StoreHeaderProps> = ({
         
         {/* Brand Logo - Minimal & Premium */}
         <Link href="/" className="flex items-center gap-3 shrink-0 group">
-          <div
-            className={`h-9 w-9 rounded-xl flex items-center justify-center font-bold text-lg shadow-md group-hover:scale-105 transition-transform ${
-              isLight ? 'bg-neutral-900 text-white' : 'bg-white text-black'
-            }`}
-          >
-            N
+          <div className="relative h-9 w-9 rounded-xl overflow-hidden shadow-md group-hover:scale-105 transition-transform flex items-center justify-center">
+            <Image
+              src="/logo.png"
+              alt="NewAIHubber Logo"
+              fill
+              className="object-cover"
+            />
           </div>
           <div className="flex flex-col">
             <span
