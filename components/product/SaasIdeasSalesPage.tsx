@@ -98,11 +98,11 @@ export const SaasIdeasSalesPage: React.FC<SaasIdeasSalesPageProps> = ({ product 
 
       {/* 1. TOP HEADER */}
       <header className="sticky top-0 z-50 w-full border-b border-[#E4DFD3] bg-[#F7F4EE]/90 backdrop-blur-md transition-colors">
-        <div className="container max-w-6xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
+        <div className="container max-w-6xl mx-auto px-3 sm:px-8 h-16 sm:h-20 flex items-center justify-between gap-2 sm:gap-4">
+          <div className="flex items-center gap-2 sm:gap-3">
             <Link
               href="/"
-              className="font-serif text-2xl sm:text-3xl font-bold tracking-tight text-[#17251E] flex items-center hover:opacity-80 transition-opacity"
+              className="font-serif text-lg sm:text-3xl font-bold tracking-tight text-[#17251E] flex items-center hover:opacity-80 transition-opacity"
               style={{ fontFamily: "'Newsreader', Georgia, serif" }}
             >
               <span>50 Micro SaaS</span>
@@ -110,7 +110,7 @@ export const SaasIdeasSalesPage: React.FC<SaasIdeasSalesPageProps> = ({ product 
             </Link>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4">
             <Link
               href="/"
               className="text-xs font-semibold text-[#4A5750] hover:text-[#17251E] transition-colors hidden sm:inline-flex items-center gap-1"
@@ -120,7 +120,7 @@ export const SaasIdeasSalesPage: React.FC<SaasIdeasSalesPageProps> = ({ product 
             </Link>
             <a
               href="#checkout"
-              className="bg-[#183526] hover:bg-[#11271C] text-white font-semibold text-xs sm:text-sm px-5 py-2.5 rounded-md transition-all shadow-sm flex items-center gap-2"
+              className="bg-[#183526] hover:bg-[#11271C] text-white font-semibold text-xs sm:text-sm px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-md transition-all shadow-sm flex items-center gap-1.5 shrink-0"
             >
               <span>Get this eBook →</span>
             </a>
@@ -129,7 +129,7 @@ export const SaasIdeasSalesPage: React.FC<SaasIdeasSalesPageProps> = ({ product 
       </header>
 
       {/* MAIN CONTAINER */}
-      <main className="relative z-10 container max-w-6xl mx-auto px-4 sm:px-8 pt-10 sm:pt-16 pb-32 space-y-24">
+      <main className="relative z-10 container max-w-6xl mx-auto px-3 sm:px-8 pt-6 sm:pt-16 pb-20 sm:pb-32 space-y-12 sm:space-y-24">
 
         {/* 2. HERO SECTION */}
         <section className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center pb-12 border-b border-[#E4DFD3]">

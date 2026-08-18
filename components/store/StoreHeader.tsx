@@ -28,11 +28,11 @@ export const StoreHeader: React.FC<StoreHeaderProps> = ({
           : 'bg-[#0a0a0a]/90 border-neutral-800/80 text-neutral-100'
       }`}
     >
-      <div className="container max-w-7xl mx-auto flex h-20 items-center justify-between gap-4 px-4 sm:px-6">
+      <div className="container max-w-7xl mx-auto flex h-16 sm:h-20 items-center justify-between gap-2 sm:gap-4 px-3 sm:px-6">
         
-        {/* Brand Logo - Minimal & Premium */}
-        <Link href="/" className="flex items-center gap-3 shrink-0 group">
-          <div className="relative h-9 w-9 rounded-xl overflow-hidden shadow-md group-hover:scale-105 transition-transform flex items-center justify-center">
+        {/* Brand Logo - Responsive */}
+        <Link href="/" className="flex items-center gap-2 sm:gap-3 shrink-0 group">
+          <div className="relative h-8 w-8 sm:h-9 sm:w-9 rounded-xl overflow-hidden shadow-md group-hover:scale-105 transition-transform flex items-center justify-center shrink-0">
             <Image
               src="/logo.png"
               alt="NewAIHubber Logo"
@@ -42,13 +42,14 @@ export const StoreHeader: React.FC<StoreHeaderProps> = ({
           </div>
           <div className="flex flex-col">
             <span
-              className={`font-bold text-lg tracking-tight transition-colors flex items-center gap-1.5 ${
+              className={`font-bold text-sm sm:text-lg tracking-tight transition-colors flex items-center gap-1 sm:gap-1.5 ${
                 isLight ? 'text-neutral-900 group-hover:text-black' : 'text-white group-hover:text-neutral-300'
               }`}
             >
-              NewAIHubber{' '}
+              <span className="hidden min-[360px]:inline">NewAIHubber</span>
+              <span className="inline min-[360px]:hidden">Hubber</span>
               <span
-                className={`text-xs font-normal border px-2 py-0.5 rounded-full ${
+                className={`text-[10px] sm:text-xs font-normal border px-1.5 sm:px-2 py-0.5 rounded-full ${
                   isLight
                     ? 'border-neutral-200 bg-neutral-100 text-neutral-600'
                     : 'border-neutral-800 bg-neutral-900 text-neutral-400'
@@ -60,18 +61,18 @@ export const StoreHeader: React.FC<StoreHeaderProps> = ({
           </div>
         </Link>
 
-        {/* ONE Prominent Search Box */}
-        <div className="flex-1 max-w-xl">
+        {/* ONE Prominent Responsive Search Box */}
+        <div className="flex-1 max-w-xs sm:max-w-xl mx-1 sm:mx-0">
           <div className="relative w-full">
-            <div className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-neutral-400">
-              <Search className="w-4 h-4" />
+            <div className="absolute inset-y-0 left-0 flex items-center pl-3 sm:pl-4 pointer-events-none text-neutral-400">
+              <Search className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             </div>
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => onSearchChange(e.target.value)}
-              placeholder="Search prompts, ebooks, templates, PDFs, automation blueprints..."
-              className={`w-full border rounded-full pl-11 pr-10 py-2.5 text-sm transition-all duration-200 focus:outline-none focus:ring-1 ${
+              placeholder="Search products..."
+              className={`w-full border rounded-full pl-8 sm:pl-11 pr-8 sm:pr-10 py-1.5 sm:py-2.5 text-xs sm:text-sm transition-all duration-200 focus:outline-none focus:ring-1 ${
                 isLight
                   ? 'bg-neutral-100/90 border-neutral-200 text-neutral-900 placeholder:text-neutral-400 focus:border-neutral-400 focus:ring-neutral-400'
                   : 'bg-[#121212] border-neutral-800 text-neutral-100 placeholder:text-neutral-500 focus:border-neutral-500 focus:ring-neutral-500'
@@ -80,19 +81,19 @@ export const StoreHeader: React.FC<StoreHeaderProps> = ({
             {searchQuery && (
               <button
                 onClick={() => onSearchChange('')}
-                className="absolute inset-y-0 right-0 flex items-center pr-3.5 text-neutral-400 hover:text-neutral-600"
+                className="absolute inset-y-0 right-0 flex items-center pr-2.5 sm:pr-3.5 text-neutral-400 hover:text-neutral-600"
               >
-                <X className="w-4 h-4" />
+                <X className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               </button>
             )}
           </div>
         </div>
 
-        {/* Theme Toggle Button (Light / Dark) */}
+        {/* Responsive Theme Toggle Button (Light / Dark) */}
         <button
           onClick={onToggleTheme}
           title={isLight ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
-          className={`flex items-center gap-2 p-2.5 rounded-full border text-xs font-semibold transition-all ${
+          className={`flex items-center gap-1.5 sm:gap-2 p-2 sm:p-2.5 rounded-full border text-xs font-semibold transition-all shrink-0 ${
             isLight
               ? 'bg-neutral-100 hover:bg-neutral-200 border-neutral-200 text-neutral-800'
               : 'bg-neutral-900 hover:bg-neutral-800 border-neutral-800 text-neutral-200'
@@ -100,12 +101,12 @@ export const StoreHeader: React.FC<StoreHeaderProps> = ({
         >
           {isLight ? (
             <>
-              <Moon className="w-4 h-4 text-neutral-700" />
+              <Moon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-neutral-700" />
               <span className="hidden sm:inline">Dark</span>
             </>
           ) : (
             <>
-              <Sun className="w-4 h-4 text-amber-400" />
+              <Sun className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400" />
               <span className="hidden sm:inline">Light</span>
             </>
           )}
