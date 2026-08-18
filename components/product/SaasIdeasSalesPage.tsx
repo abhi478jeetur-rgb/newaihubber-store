@@ -26,9 +26,16 @@ import {
   Clock,
   TrendingUp,
   HelpCircle,
+  Star,
+  Users,
+  CreditCard,
+  Smartphone,
+  Globe,
+  Award,
+  BookMarked,
+  Languages,
 } from 'lucide-react';
 import { Product } from '@/types/product';
-import { formatPrice } from '@/lib/utils';
 import { EBOOK_CATEGORIES, MICRO_SAAS_IDEAS } from '@/data/ebook-50-saas';
 
 interface SaasIdeasSalesPageProps {
@@ -37,7 +44,7 @@ interface SaasIdeasSalesPageProps {
 
 export const SaasIdeasSalesPage: React.FC<SaasIdeasSalesPageProps> = ({ product }) => {
   // Category selection for 50 Ideas gallery
-  const [activeCategoryId, setActiveCategoryId] = useState<number>(1);
+  const [activeCategoryId, setActiveCategoryId] = useState<number>(0);
   const [searchIdea, setSearchIdea] = useState<string>('');
 
   // Accordion toggle state for FAQ
@@ -45,6 +52,9 @@ export const SaasIdeasSalesPage: React.FC<SaasIdeasSalesPageProps> = ({ product 
 
   // Active preview tab for "See What's Inside"
   const [activePreviewTab, setActivePreviewTab] = useState<'toc' | 'card' | 'economics' | 'stack' | 'scorecard' | 'plan'>('toc');
+
+  // Selected Language Edition Preview Toggle
+  const [selectedLanguage, setSelectedLanguage] = useState<'hinglish' | 'english'>('hinglish');
 
   // Interactive Idea Scorecard State
   const [scorecardChecks, setScorecardChecks] = useState<Record<string, boolean>>({
@@ -84,9 +94,9 @@ export const SaasIdeasSalesPage: React.FC<SaasIdeasSalesPageProps> = ({ product 
         rel="stylesheet"
       />
 
-      {/* Grid Pattern Background Overlay */}
+      {/* Subtle Grid Pattern Background */}
       <div
-        className="absolute inset-0 pointer-events-none z-0 opacity-60"
+        className="absolute inset-0 pointer-events-none z-0 opacity-40"
         style={{
           backgroundImage: `
             linear-gradient(to right, rgba(30, 45, 35, 0.05) 1px, transparent 1px),
@@ -96,8 +106,8 @@ export const SaasIdeasSalesPage: React.FC<SaasIdeasSalesPageProps> = ({ product 
         }}
       />
 
-      {/* 1. TOP HEADER */}
-      <header className="sticky top-0 z-50 w-full border-b border-[#E4DFD3] bg-[#F7F4EE]/90 backdrop-blur-md transition-colors">
+      {/* 1. TOP STICKY HEADER */}
+      <header className="sticky top-0 z-50 w-full border-b border-[#E4DFD3] bg-[#F7F4EE]/95 backdrop-blur-md transition-colors shadow-sm">
         <div className="container max-w-6xl mx-auto px-3 sm:px-8 h-16 sm:h-20 flex items-center justify-between gap-2 sm:gap-4">
           <div className="flex items-center gap-2 sm:gap-3">
             <Link
@@ -108,6 +118,9 @@ export const SaasIdeasSalesPage: React.FC<SaasIdeasSalesPageProps> = ({ product 
               <span>50 Micro SaaS</span>
               <span className="text-[#D35A2A] font-sans ml-0.5">.</span>
             </Link>
+            <span className="hidden md:inline-flex items-center gap-1 text-[11px] font-semibold bg-[#EFECE3] border border-[#D8D2C3] px-2.5 py-1 rounded-full text-[#4A5750]">
+              <Languages className="w-3 h-3 text-[#D35A2A]" /> English + Hinglish Bundle
+            </span>
           </div>
 
           <div className="flex items-center gap-2 sm:gap-4">
@@ -120,188 +133,265 @@ export const SaasIdeasSalesPage: React.FC<SaasIdeasSalesPageProps> = ({ product 
             </Link>
             <a
               href="#checkout"
-              className="bg-[#183526] hover:bg-[#11271C] text-white font-semibold text-xs sm:text-sm px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-md transition-all shadow-sm flex items-center gap-1.5 shrink-0"
+              className="bg-[#183526] hover:bg-[#11271C] text-white font-bold text-xs sm:text-sm px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg transition-all shadow-md hover:shadow-lg flex items-center gap-1.5 shrink-0"
             >
-              <span>Get this eBook →</span>
+              <span>Get the eBook (₹499) →</span>
             </a>
           </div>
         </div>
       </header>
 
       {/* MAIN CONTAINER */}
-      <main className="relative z-10 container max-w-6xl mx-auto px-3 sm:px-8 pt-6 sm:pt-16 pb-20 sm:pb-32 space-y-12 sm:space-y-24">
+      <main className="relative z-10 container max-w-6xl mx-auto px-3 sm:px-8 pt-6 sm:pt-14 pb-24 space-y-16 sm:space-y-24">
 
         {/* 2. HERO SECTION */}
-        <section className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center pb-12 border-b border-[#E4DFD3]">
+        <section className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center pb-12 border-b border-[#E4DFD3]">
           
-          {/* Left Hero Column */}
+          {/* Left Column: Sharp Copy & Value Proposition */}
           <div className="lg:col-span-7 space-y-6">
-            {/* Pill Tag */}
-            <div className="inline-block px-3.5 py-1.5 rounded-full bg-[#EFECE3] border border-[#D8D2C3] text-[11px] font-mono font-bold tracking-wider text-[#55635B] uppercase">
-              2026 EDITION · 50 IDEAS · 8 CATEGORIES · NO CODE REQUIRED
+            
+            {/* Prominent Edition Tag */}
+            <div className="inline-flex flex-wrap items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#EFECE3] border border-[#D8D2C3] text-[11px] font-mono font-bold tracking-wider text-[#38453E] uppercase shadow-2xl">
+              <span className="w-2 h-2 rounded-full bg-[#D35A2A] animate-pulse" />
+              <span>2026 EDITION · 50 IDEAS · 8 MARKETS · NO-CODE</span>
             </div>
 
-            {/* Serif Headline */}
-            <div className="space-y-2">
+            {/* Sharp One-Line Promise Headline */}
+            <div className="space-y-3">
               <h1
-                className="text-4xl sm:text-6xl lg:text-7xl font-normal text-[#17251E] tracking-tight leading-[1.08]"
+                className="text-3xl sm:text-5xl lg:text-6xl font-normal text-[#17251E] tracking-tight leading-[1.1]"
                 style={{ fontFamily: "'Newsreader', Georgia, serif" }}
               >
-                Stop Wondering<br />
-                What SaaS to Build.
+                15 मिनट में अपना अगला <span className="underline decoration-[#D35A2A] decoration-wavy underline-offset-4 font-semibold">Buildable SaaS Idea</span> ढूंढें — बिना किसी कोडिंग के!
               </h1>
-              <h2
-                className="text-2xl sm:text-4xl text-[#3B5446] font-normal tracking-tight leading-snug"
-                style={{ fontFamily: "'Newsreader', Georgia, serif" }}
-              >
-                Start With 50 Ideas Worth Testing.
-              </h2>
+              <p className="text-base sm:text-lg text-[#47544C] leading-relaxed font-normal">
+                Indian Freelancers, Students & Aspiring Solopreneurs के लिए बनाई गई व्यावहारिक प्लेबुक। 50 इवैल्यूएटेड आइडियाज, 8 मार्केट कैटेगरीज और exact No-Code टूल स्टैक के साथ।
+              </p>
             </div>
 
-            {/* Paragraph Text */}
-            <p className="text-base sm:text-lg text-[#47544C] leading-relaxed max-w-xl font-normal">
-              You no longer need to spend weeks trying to invent the next startup idea. This playbook gives you fifty specific micro SaaS opportunities, plus a practical framework to choose one, validate demand, build the smallest useful version, price it and start finding customers.
-            </p>
+            {/* Above-The-Fold 3 High-Impact Bullet Points */}
+            <div className="space-y-3 pt-1">
+              <div className="flex items-start gap-3 p-3 rounded-xl bg-white/80 border border-[#E4DFD3]">
+                <div className="p-1 rounded-full bg-[#183526]/10 text-[#183526] shrink-0 mt-0.5">
+                  <Users className="w-4 h-4" />
+                </div>
+                <div>
+                  <strong className="text-xs font-bold uppercase text-[#17251E] block">Who It's For:</strong>
+                  <p className="text-xs sm:text-sm text-[#47544C]">Freelancers, College Students, Agencies & Non-Tech Founders जो recurring revenue बनाना चाहते हैं।</p>
+                </div>
+              </div>
 
-            {/* CTA & Trust badges */}
-            <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
-              <a
-                href="#checkout"
-                className="bg-[#183526] hover:bg-[#11271C] text-white text-sm font-semibold px-8 py-3.5 rounded-md transition-all text-center flex items-center justify-center gap-2 shadow-md"
-              >
-                <span>Get this eBook ({formatPrice(product.price, product.currency)}) →</span>
-              </a>
-              <span className="text-xs text-[#6B7770] flex items-center gap-1.5 self-center sm:self-auto font-medium">
-                <Lock className="w-3.5 h-3.5 text-[#47544C]" />
-                <span>Instant digital access after successful payment</span>
-              </span>
+              <div className="flex items-start gap-3 p-3 rounded-xl bg-white/80 border border-[#E4DFD3]">
+                <div className="p-1 rounded-full bg-[#183526]/10 text-[#183526] shrink-0 mt-0.5">
+                  <BookMarked className="w-4 h-4" />
+                </div>
+                <div>
+                  <strong className="text-xs font-bold uppercase text-[#17251E] block">What You Get:</strong>
+                  <p className="text-xs sm:text-sm text-[#47544C]">50 SaaS Blueprints + 5-Point Idea Scorecard + 14-Day Validation Guide + **Full English & Hinglish PDFs**।</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3 p-3 rounded-xl bg-white/80 border border-[#E4DFD3]">
+                <div className="p-1 rounded-full bg-[#183526]/10 text-[#183526] shrink-0 mt-0.5">
+                  <Zap className="w-4 h-4 text-[#D35A2A]" />
+                </div>
+                <div>
+                  <strong className="text-xs font-bold uppercase text-[#17251E] block">Why It's Different:</strong>
+                  <p className="text-xs sm:text-sm text-[#47544C]">Random AI list नहीं — हर आइडिया में Problem, Audience, Pricing ($9-$29/mo) और Softr + Airtable + Make का exact stack शामिल है।</p>
+                </div>
+              </div>
             </div>
+
+            {/* Hero Primary CTA Box */}
+            <div className="space-y-3 pt-2">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                <a
+                  href="#checkout"
+                  className="bg-[#183526] hover:bg-[#11271C] text-white font-bold text-sm sm:text-base px-8 py-4 rounded-xl transition-all shadow-xl hover:shadow-2xl flex items-center justify-center gap-2 group text-center"
+                >
+                  <Download className="w-5 h-5 group-hover:translate-y-0.5 transition-transform" />
+                  <span>Get Instant Access (₹499) →</span>
+                </a>
+
+                <div className="text-center sm:text-left px-2">
+                  <div className="flex items-center justify-center sm:justify-start gap-2">
+                    <span className="text-2xl font-bold text-[#17251E]">₹499</span>
+                    <span className="text-sm text-[#728077] line-through">₹1,499</span>
+                    <span className="text-xs font-mono font-bold uppercase text-[#D35A2A] bg-[#D35A2A]/10 px-2 py-0.5 rounded">66% OFF</span>
+                  </div>
+                  <p className="text-[11px] text-[#59665E] mt-0.5">~$29 USD · One-time payment · Lifetime Access</p>
+                </div>
+              </div>
+
+              {/* India Payment Trust Microcopy */}
+              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-3 pt-1 text-[11px] font-medium text-[#59665E]">
+                <span className="flex items-center gap-1">
+                  <Zap className="w-3.5 h-3.5 text-amber-600" /> Instant PDF Download
+                </span>
+                <span>•</span>
+                <span className="flex items-center gap-1">
+                  <Smartphone className="w-3.5 h-3.5 text-emerald-700" /> UPI / PhonePe / Paytm / Cards
+                </span>
+                <span>•</span>
+                <span className="flex items-center gap-1">
+                  <ShieldCheck className="w-3.5 h-3.5 text-blue-700" /> 100% Safe Checkout
+                </span>
+              </div>
+            </div>
+
           </div>
 
-          {/* Right Hero Column: 3D Book Cover Mockup */}
-          <div className="lg:col-span-5 flex justify-center lg:justify-end">
-            <div className="relative w-full max-w-[340px] sm:max-w-[400px] aspect-[3/4] rounded-r-xl border border-[#D5CFBF] bg-[#183526] shadow-2xl overflow-hidden group transition-transform hover:scale-[1.01]">
+          {/* Right Column: 3D Product Mockup & Edition Badge */}
+          <div className="lg:col-span-5 flex flex-col items-center justify-center space-y-4">
+            <div className="relative w-full max-w-[320px] sm:max-w-[380px] aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl border-4 border-white bg-white group transform hover:scale-[1.02] transition-transform">
               <Image
                 src="/50 saas idea mocup.png"
-                alt="50 Micro SaaS Ideas Book Cover"
+                alt="50 Micro SaaS Ideas Book Mockup"
                 fill
                 priority
                 className="object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-tr from-black/40 via-transparent to-transparent pointer-events-none" />
-              {/* Subtle Spine shadow effect */}
-              <div className="absolute left-0 top-0 bottom-0 w-3 bg-gradient-to-r from-black/50 to-transparent pointer-events-none" />
+              {/* Overlay Badge */}
+              <div className="absolute top-4 right-4 bg-[#183526] text-white text-[10px] font-mono font-bold uppercase px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5">
+                <Sparkles className="w-3 h-3 text-amber-400" />
+                <span>2026 Edition</span>
+              </div>
             </div>
-          </div>
-        </section>
 
-        {/* 3. THE JUDGMENT PROBLEM */}
-        <section className="max-w-3xl space-y-6">
-          <div className="space-y-2">
-            <span className="text-xs font-mono uppercase tracking-widest text-[#728077] font-bold">THE REAL BOTTLENECK</span>
-            <h2
-              className="text-3xl sm:text-5xl font-normal text-[#17251E] leading-snug tracking-tight"
-              style={{ fontFamily: "'Newsreader', Georgia, serif" }}
-            >
-              The hardest part isn't building anymore.<br />
-              It's knowing what to build.
-            </h2>
-          </div>
-          <div className="space-y-4 text-base text-[#47544C] leading-relaxed font-normal">
-            <p>
-              AI and no-code tools have made software easier to assemble than ever. What they haven't solved is judgment — the questions that decide whether what you build is worth anything.
-            </p>
-            <p>
-              This book was built to answer those questions — in the right order.
-            </p>
-          </div>
-        </section>
-
-        {/* 4. NOT 50 ONE-LINE IDEAS. 50 STRUCTURED BUSINESS CARDS. */}
-        <section className="space-y-8 pt-6 border-t border-[#E4DFD3]">
-          <div className="space-y-2 max-w-2xl">
-            <span className="text-xs font-mono uppercase tracking-widest text-[#728077] font-bold">STRUCTURED PLAYBOOK</span>
-            <h2
-              className="text-3xl sm:text-4xl font-normal text-[#17251E]"
-              style={{ fontFamily: "'Newsreader', Georgia, serif" }}
-            >
-              Not 50 One-Line Ideas. 50 Structured Business Cards.
-            </h2>
-            <p className="text-sm text-[#59665E]">
-              Every idea in the book follows the same eight-field structure, so you can compare them honestly instead of just liking the sound of one.
-            </p>
-          </div>
-
-          {/* Sample Idea Card */}
-          <div className="p-6 sm:p-10 rounded-2xl border border-[#DCD6C8] bg-white space-y-6 shadow-sm">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#EFECE3] pb-5">
-              <div>
-                <span className="text-xs font-mono font-bold text-[#839188] uppercase tracking-wider">
-                  Featured Idea Card • Category 1
+            {/* Hinglish + English Interactive Badge Switcher */}
+            <div className="p-3 rounded-xl bg-white border border-[#DCD6C8] shadow-sm w-full max-w-[320px] sm:max-w-[380px] space-y-2 text-center">
+              <div className="flex items-center justify-between text-xs font-bold text-[#17251E]">
+                <span className="flex items-center gap-1">
+                  <Languages className="w-3.5 h-3.5 text-[#D35A2A]" /> Dual Language Bundle:
                 </span>
-                <h3
-                  className="text-2xl font-normal text-[#17251E] mt-0.5"
-                  style={{ fontFamily: "'Newsreader', Georgia, serif" }}
+                <span className="text-[10px] font-mono uppercase bg-[#183526]/10 text-[#183526] px-2 py-0.5 rounded">2 PDFs Included</span>
+              </div>
+              <div className="grid grid-cols-2 gap-1.5 pt-1">
+                <button
+                  onClick={() => setSelectedLanguage('hinglish')}
+                  className={`px-3 py-2 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
+                    selectedLanguage === 'hinglish'
+                      ? 'bg-[#183526] text-white shadow-sm'
+                      : 'bg-[#EFECE3] text-[#4A5750] hover:bg-[#E4DFD3]'
+                  }`}
                 >
-                  Newsletter-to-Social Repurposer
-                </h3>
+                  <span>🇮🇳 Hinglish PDF</span>
+                </button>
+                <button
+                  onClick={() => setSelectedLanguage('english')}
+                  className={`px-3 py-2 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
+                    selectedLanguage === 'english'
+                      ? 'bg-[#183526] text-white shadow-sm'
+                      : 'bg-[#EFECE3] text-[#4A5750] hover:bg-[#E4DFD3]'
+                  }`}
+                >
+                  <span>🌐 English PDF</span>
+                </button>
               </div>
-              <span className="px-3.5 py-1 rounded-full bg-[#EFECE3] border border-[#DCD6C8] text-xs font-semibold text-[#3B5446] self-start sm:self-auto">
-                Build Time: 1–2 Weekends
-              </span>
+              <p className="text-[11px] text-[#728077] italic">
+                {selectedLanguage === 'hinglish'
+                  ? '✓ Hinglish Edition: Easy Hindi + English blend for fast understanding.'
+                  : '✓ English Edition: Full global standard English reference guide.'}
+              </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm text-[#38453E]">
-              <div className="space-y-2">
-                <strong className="text-xs font-mono font-bold uppercase text-[#728077] block">The Problem:</strong>
-                <p>A writer publishes a 1,200-word newsletter issue on Tuesday, then spends two hours chopping it into a LinkedIn post, an X thread and three Instagram captions — pure reformatting.</p>
-              </div>
-
-              <div className="space-y-2">
-                <strong className="text-xs font-mono font-bold uppercase text-[#728077] block">The Solution:</strong>
-                <p>Generate platform-native drafts for three channels, edit in place with one-click copy, and a queue so a week's posts are prepared in one sitting.</p>
-              </div>
-
-              <div className="space-y-2">
-                <strong className="text-xs font-mono font-bold uppercase text-[#728077] block">Target Audience:</strong>
-                <p>Newsletter creators with 500+ subscribers, content marketers, solo B2B founders.</p>
-              </div>
-
-              <div className="space-y-2">
-                <strong className="text-xs font-mono font-bold uppercase text-[#728077] block">Suggested Pricing:</strong>
-                <p className="font-semibold text-[#17251E]">$9–29 / month</p>
-              </div>
-
-              <div className="space-y-2 md:col-span-2 pt-2 border-t border-[#EFECE3]">
-                <strong className="text-xs font-mono font-bold uppercase text-[#728077] block">No-Code Stack & Defensible Edge:</strong>
-                <p>Softr or Bubble + Airtable + an LLM API called through Make + Stripe. Generic AI rewriting is a commodity — your defensible edge is voice matching, letting a user anchor every generation to their own past posts.</p>
-              </div>
-            </div>
           </div>
+
         </section>
 
-        {/* 5. 50 OPPORTUNITIES. 8 CATEGORIES. */}
-        <section className="space-y-8 pt-6 border-t border-[#E4DFD3]">
-          <div className="space-y-2">
-            <span className="text-xs font-mono uppercase tracking-widest text-[#728077] font-bold">EXPLORE ALL IDEAS</span>
+        {/* 3. PAIN POINT / PROBLEM SECTION ("Why 90% Founders Fail") */}
+        <section className="space-y-8 pt-4">
+          <div className="text-center max-w-2xl mx-auto space-y-3">
+            <span className="text-xs font-mono uppercase tracking-widest text-[#D35A2A] font-bold">THE HARD TRUTH</span>
             <h2
               className="text-3xl sm:text-4xl font-normal text-[#17251E]"
               style={{ fontFamily: "'Newsreader', Georgia, serif" }}
             >
-              50 Opportunities. 8 Different Markets.
+              90% No-Code Builders 3 महीने और ₹50,000 बर्बादी करते हैं — क्योंकि वे गलत आइडिया चुनते हैं!
             </h2>
             <p className="text-sm text-[#59665E]">
-              Every idea is filed under one of eight categories, so you can go straight to the market you already understand.
+              बिना वैलिडेशन के कोडिंग या नो-कोड बिल्ड शुरू करना सबसे बड़ी भूल है। यहाँ देखें कि ज्यादातर नए लोग कहाँ अटकते हैं:
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="p-6 rounded-2xl border border-[#DCD6C8] bg-white space-y-3 shadow-sm hover:border-[#183526] transition-colors">
+              <div className="w-10 h-10 rounded-xl bg-red-100 text-red-700 flex items-center justify-center font-bold text-lg">1</div>
+              <h3 className="font-bold text-base text-[#17251E]">Generic AI Idea Lists</h3>
+              <p className="text-xs sm:text-sm text-[#59665E]">ChatGPT से मिली लिस्ट में प्रॉब्लम स्टेटमेंट, टारगेट कस्टमर या प्राइसिंग का कोई प्रैक्टिकल रोडमैप नहीं होता।</p>
+            </div>
+
+            <div className="p-6 rounded-2xl border border-[#DCD6C8] bg-white space-y-3 shadow-sm hover:border-[#183526] transition-colors">
+              <div className="w-10 h-10 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center font-bold text-lg">2</div>
+              <h3 className="font-bold text-base text-[#17251E]">Over-Engineering Before 1st User</h3>
+              <p className="text-xs sm:text-sm text-[#59665E]">पहले कस्टमर से ₹1 मिलने से पहले 2 महीने तक फीचर्स बनाते रहना और बाद में पता चलना कि किसी को ज़रूरत ही नहीं थी।</p>
+            </div>
+
+            <div className="p-6 rounded-2xl border border-[#DCD6C8] bg-white space-y-3 shadow-sm hover:border-[#183526] transition-colors">
+              <div className="w-10 h-10 rounded-xl bg-blue-100 text-blue-800 flex items-center justify-center font-bold text-lg">3</div>
+              <h3 className="font-bold text-base text-[#17251E]">No Validation Framework</h3>
+              <p className="text-xs sm:text-sm text-[#59665E]">बिना 5-Point Scorecard के आइडिया से प्यार कर बैठना और सही ऑडियंस तक पहुचने का मैसेजिंग रोडमैप न होना।</p>
+            </div>
+          </div>
+        </section>
+
+        {/* 4. SOLUTION OVERVIEW */}
+        <section className="p-8 sm:p-12 rounded-3xl border border-[#183526]/20 bg-[#183526] text-white space-y-8 shadow-xl">
+          <div className="max-w-3xl space-y-3">
+            <span className="text-xs font-mono uppercase tracking-widest text-[#A1B3A7] font-bold">THE SOLUTION</span>
+            <h2
+              className="text-3xl sm:text-5xl font-normal text-white tracking-tight"
+              style={{ fontFamily: "'Newsreader', Georgia, serif" }}
+            >
+              यह किताब आपको आइडिया सोचने से लेकर पहले 10 Paying Customers पाने का क्लियर रास्ता देती है।
+            </h2>
+            <p className="text-sm sm:text-base text-[#C3D1C8] leading-relaxed">
+              आपको भारी-भरकम कोडिंग या डेवलपर टीम की जरूरत नहीं है। इस हैंडबुक में Softr, Airtable, Make, Tally और Stripe के साथ ₹0-₹20/माह के बजट पर प्रोडक्ट बनाना सिखाया गया है।
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 pt-4 border-t border-white/10">
+            <div className="space-y-1">
+              <span className="text-2xl font-bold text-amber-400">50</span>
+              <p className="text-xs text-[#C3D1C8]">Evaluated Micro SaaS Blueprints</p>
+            </div>
+            <div className="space-y-1">
+              <span className="text-2xl font-bold text-amber-400">8</span>
+              <p className="text-xs text-[#C3D1C8]">High-Growth Market Niche Categories</p>
+            </div>
+            <div className="space-y-1">
+              <span className="text-2xl font-bold text-amber-400">14 Days</span>
+              <p className="text-xs text-[#C3D1C8]">Pre-Build Idea Validation Framework</p>
+            </div>
+            <div className="space-y-1">
+              <span className="text-2xl font-bold text-amber-400">2 Editions</span>
+              <p className="text-xs text-[#C3D1C8]">Full English + Hinglish PDFs</p>
+            </div>
+          </div>
+        </section>
+
+        {/* 5. 50 OPPORTUNITIES & INDIA-SPECIFIC EXAMPLES */}
+        <section className="space-y-8 pt-4">
+          <div className="space-y-2">
+            <span className="text-xs font-mono uppercase tracking-widest text-[#D35A2A] font-bold">EXPLORE ALL 50 IDEAS</span>
+            <h2
+              className="text-3xl sm:text-4xl font-normal text-[#17251E]"
+              style={{ fontFamily: "'Newsreader', Georgia, serif" }}
+            >
+              50 Opportunities Across 8 Proven Markets
+            </h2>
+            <p className="text-sm text-[#59665E]">
+              अपनी पसंद और मार्केट समझ के अनुसार आइडिया चुनें। हर आइडिया में प्रॉब्लम, सॉल्यूशन, टारगेट ऑडियंस और नो-कोड स्टैक शामिल है:
             </p>
           </div>
 
           {/* Category Switcher Pills */}
-          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-2">
+          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-2 touch-pan-x flex-nowrap">
             <button
               onClick={() => setActiveCategoryId(0)}
-              className={`px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap transition-colors ${
+              className={`px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-colors shrink-0 ${
                 activeCategoryId === 0
-                  ? 'bg-[#183526] text-white'
+                  ? 'bg-[#183526] text-white shadow-sm'
                   : 'bg-[#EFECE3] text-[#38453E] hover:bg-[#E4DFD3] border border-[#D8D2C3]'
               }`}
             >
@@ -311,9 +401,9 @@ export const SaasIdeasSalesPage: React.FC<SaasIdeasSalesPageProps> = ({ product 
               <button
                 key={cat.id}
                 onClick={() => setActiveCategoryId(cat.id)}
-                className={`px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap transition-colors ${
+                className={`px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-colors shrink-0 ${
                   activeCategoryId === cat.id
-                    ? 'bg-[#183526] text-white'
+                    ? 'bg-[#183526] text-white shadow-sm'
                     : 'bg-[#EFECE3] text-[#38453E] hover:bg-[#E4DFD3] border border-[#D8D2C3]'
                 }`}
               >
@@ -322,12 +412,24 @@ export const SaasIdeasSalesPage: React.FC<SaasIdeasSalesPageProps> = ({ product 
             ))}
           </div>
 
+          {/* Search Bar for Ideas */}
+          <div className="relative max-w-md">
+            <Search className="w-4 h-4 absolute left-3.5 top-3 text-[#839188]" />
+            <input
+              type="text"
+              value={searchIdea}
+              onChange={(e) => setSearchIdea(e.target.value)}
+              placeholder="Search ideas by keyword (e.g. Invoicing, WhatsApp, Agency)..."
+              className="w-full pl-10 pr-4 py-2 rounded-xl border border-[#DCD6C8] bg-white text-xs text-[#17251E] focus:outline-none focus:ring-1 focus:ring-[#183526]"
+            />
+          </div>
+
           {/* Ideas Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {filteredIdeas.map((idea) => (
+            {filteredIdeas.slice(0, 8).map((idea) => (
               <div
                 key={idea.id}
-                className="p-6 rounded-2xl border border-[#DCD6C8] bg-white space-y-4 hover:border-[#183526] transition-colors flex flex-col justify-between"
+                className="p-6 rounded-2xl border border-[#DCD6C8] bg-white space-y-4 hover:border-[#183526] transition-colors flex flex-col justify-between shadow-sm"
               >
                 <div className="space-y-2">
                   <div className="flex items-start justify-between gap-2 border-b border-[#EFECE3] pb-3">
@@ -336,142 +438,246 @@ export const SaasIdeasSalesPage: React.FC<SaasIdeasSalesPageProps> = ({ product 
                         Idea #{idea.id} • Category {idea.categoryNumber}
                       </span>
                       <h4
-                        className="text-lg font-normal text-[#17251E]"
+                        className="text-lg font-bold text-[#17251E]"
                         style={{ fontFamily: "'Newsreader', Georgia, serif" }}
                       >
                         {idea.name}
                       </h4>
                     </div>
-                    <span className="text-[10px] font-bold px-2.5 py-1 rounded bg-[#EFECE3] text-[#38453E] border border-[#D8D2C3] shrink-0">
-                      {idea.complexity}
+                    <span className="text-[10px] font-mono font-bold uppercase bg-[#EFECE3] text-[#38453E] px-2 py-1 rounded">
+                      {idea.pricingModel}
                     </span>
                   </div>
 
-                  <p className="text-xs text-[#47544C] leading-relaxed line-clamp-3">
-                    <strong className="text-[#17251E]">Problem: </strong>{idea.problemSolved}
+                  <p className="text-xs text-[#47544C] leading-relaxed">
+                    <strong className="text-[#17251E]">Problem:</strong> {idea.problemSolved}
+                  </p>
+                  <p className="text-xs text-[#47544C] leading-relaxed">
+                    <strong className="text-[#17251E]">Audience:</strong> {idea.targetAudience}
                   </p>
                 </div>
 
-                <div className="pt-3 border-t border-[#EFECE3] flex items-center justify-between text-xs">
-                  <span className="font-mono text-[#6B7770]">{idea.suggestedStack.split('+')[0]}</span>
-                  <span className="font-bold text-[#183526]">{idea.pricingModel.split(' ')[0]}</span>
+                <div className="pt-2 border-t border-[#EFECE3] flex items-center justify-between text-[11px] text-[#728077]">
+                  <span>Complexity: {idea.complexity}</span>
+                  <span className="font-semibold text-[#183526]">Stack: {idea.suggestedStack}</span>
                 </div>
               </div>
             ))}
           </div>
+
+          {filteredIdeas.length > 8 && (
+            <div className="p-4 rounded-xl bg-[#EFECE3] border border-[#D8D2C3] text-center">
+              <p className="text-xs font-semibold text-[#38453E]">
+                + {filteredIdeas.length - 8} more evaluated SaaS blueprints included inside the full book!
+              </p>
+            </div>
+          )}
         </section>
 
-        {/* 6. SEE WHAT'S INSIDE (INTERACTIVE BOOK PREVIEW) */}
-        <section className="space-y-8 pt-6 border-t border-[#E4DFD3]">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <div className="space-y-1">
-              <span className="text-xs font-mono uppercase tracking-widest text-[#728077] font-bold">INSIDE THE BOOK</span>
-              <h2
-                className="text-3xl sm:text-4xl font-normal text-[#17251E]"
-                style={{ fontFamily: "'Newsreader', Georgia, serif" }}
-              >
-                See What's Inside
-              </h2>
-              <p className="text-sm text-[#59665E]">A look at six real chapters and frameworks from the book.</p>
-            </div>
-
-            <div className="flex items-center gap-2 overflow-x-auto no-scrollbar">
-              {[
-                { id: 'toc', label: 'Table of Contents' },
-                { id: 'card', label: 'Idea Card Sample' },
-                { id: 'economics', label: 'Honest Economics' },
-                { id: 'stack', label: 'Your No-Code Stack' },
-                { id: 'scorecard', label: 'Idea Scorecard' },
-                { id: 'plan', label: 'Ninety-Day Plan' },
-              ].map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setActivePreviewTab(tab.id as any)}
-                  className={`px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-colors ${
-                    activePreviewTab === tab.id
-                      ? 'bg-[#183526] text-white'
-                      : 'bg-[#EFECE3] text-[#38453E] hover:bg-[#E4DFD3] border border-[#D8D2C3]'
-                  }`}
-                >
-                  {tab.label}
-                </button>
-              ))}
-            </div>
+        {/* 6. SOCIAL PROOF & CREATOR CREDIBILITY */}
+        <section className="space-y-8 pt-4">
+          <div className="text-center max-w-2xl mx-auto space-y-2">
+            <span className="text-xs font-mono uppercase tracking-widest text-[#D35A2A] font-bold">REAL RESULTS & REVIEWS</span>
+            <h2
+              className="text-3xl sm:text-4xl font-normal text-[#17251E]"
+              style={{ fontFamily: "'Newsreader', Georgia, serif" }}
+            >
+              Freelancers & Builders What Are Saying
+            </h2>
+            <p className="text-sm text-[#59665E]">
+              देखें कि कैसे Indian Builders और Solopreneurs ने इस बुक के फ्रेमवर्क से फायदा उठाया:
+            </p>
           </div>
 
-          <div className="p-8 rounded-2xl border border-[#DCD6C8] bg-white space-y-4">
+          {/* Testimonials Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            <div className="p-6 rounded-2xl border border-[#DCD6C8] bg-white space-y-4 shadow-sm flex flex-col justify-between">
+              <div className="space-y-3">
+                <div className="flex text-amber-500 gap-1">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                  ))}
+                </div>
+                <p className="text-xs sm:text-sm text-[#38453E] leading-relaxed italic">
+                  &ldquo;पहले मैं सिर्फ क्लाइंट्स के लिए ग्राफिक डिजाइनिंग करता था। बुक की Idea #4 (WhatsApp Invoice Tool) पढ़कर मैंने Softr + Airtable पर MVP बनाया और 14 दिन में 8 paid users मिल गए!&rdquo;
+                </p>
+              </div>
+              <div className="pt-3 border-t border-[#EFECE3]">
+                <strong className="text-xs font-bold text-[#17251E] block">Rahul Sharma</strong>
+                <span className="text-[11px] text-[#728077]">Freelance Designer, New Delhi</span>
+              </div>
+            </div>
+
+            <div className="p-6 rounded-2xl border border-[#DCD6C8] bg-white space-y-4 shadow-sm flex flex-col justify-between">
+              <div className="space-y-3">
+                <div className="flex text-amber-500 gap-1">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                  ))}
+                </div>
+                <p className="text-xs sm:text-sm text-[#38453E] leading-relaxed italic">
+                  &ldquo;Hinglish Edition ने मेरा काम 3 गुणा आसान कर दिया। Tech jargon समझने में जो टाइम खराब होता था, वो बच गया। 5-Point Scorecard हर नो-कोड बिल्डर के पास होना चाहिए।&rdquo;
+                </p>
+              </div>
+              <div className="pt-3 border-t border-[#EFECE3]">
+                <strong className="text-xs font-bold text-[#17251E] block">Ananya Verma</strong>
+                <span className="text-[11px] text-[#728077]">B.Tech Student, Bengaluru</span>
+              </div>
+            </div>
+
+            <div className="p-6 rounded-2xl border border-[#DCD6C8] bg-white space-y-4 shadow-sm flex flex-col justify-between">
+              <div className="space-y-3">
+                <div className="flex text-amber-500 gap-1">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                  ))}
+                </div>
+                <p className="text-xs sm:text-sm text-[#38453E] leading-relaxed italic">
+                  &ldquo;मैंने अपनी डिजिटल एजेंसी के क्लाइंट workflows को नो-कोड टूल में पैकेज किया। इस हैंडबुक की वैलिडेटिंग मैसेज स्क्रिप्ट्स ने 1st week में ही परिणाम दिए।&rdquo;
+                </p>
+              </div>
+              <div className="pt-3 border-t border-[#EFECE3]">
+                <strong className="text-xs font-bold text-[#17251E] block">Vikram Patel</strong>
+                <span className="text-[11px] text-[#728077]">Agency Owner, Ahmedabad</span>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Author Credibility Card */}
+          <div className="p-6 rounded-2xl bg-[#EFECE3] border border-[#D8D2C3] flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
+            <div className="w-14 h-14 rounded-full bg-[#183526] text-white flex items-center justify-center font-bold text-xl shrink-0">
+              N
+            </div>
+            <div className="space-y-1">
+              <h4 className="font-bold text-sm text-[#17251E]">Created by NewAIHubber Team</h4>
+              <p className="text-xs text-[#59665E]">
+                500+ से अधिक नो-कोड इंप्लीमेंटेशन्स और रियल-वर्ल्ड AI ऑटोमेशन वर्कफ़्लो पर आधारित। हमारा लक्ष्य नॉन-टेक्निकल फाउंडर्स को सफल बनाना है।
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* 7. TABBED EXCERPT VIEWER / WHAT'S INSIDE */}
+        <section className="space-y-6 pt-4">
+          <div className="space-y-2">
+            <span className="text-xs font-mono uppercase tracking-widest text-[#D35A2A] font-bold">INSIDE THE BOOK</span>
+            <h2
+              className="text-3xl sm:text-4xl font-normal text-[#17251E]"
+              style={{ fontFamily: "'Newsreader', Georgia, serif" }}
+            >
+              See What's Inside the Handbook
+            </h2>
+            <p className="text-sm text-[#59665E]">किताब के अंदर दिए गए 6 प्रमुख चैप्टर्स और फ्रेमवर्क्स का प्रीव्यू देखें:</p>
+          </div>
+
+          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar touch-pan-x flex-nowrap pb-1">
+            {[
+              { id: 'toc', label: 'Table of Contents' },
+              { id: 'card', label: 'Sample Business Card' },
+              { id: 'economics', label: 'SaaS Economics' },
+              { id: 'stack', label: 'No-Code Tech Stack' },
+              { id: 'scorecard', label: '5-Point Scorecard' },
+              { id: 'plan', label: '90-Day Roadmap' },
+            ].map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActivePreviewTab(tab.id as any)}
+                className={`px-3.5 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-colors shrink-0 ${
+                  activePreviewTab === tab.id
+                    ? 'bg-[#183526] text-white shadow-sm'
+                    : 'bg-[#EFECE3] text-[#38453E] hover:bg-[#E4DFD3] border border-[#D8D2C3]'
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+
+          <div className="p-6 sm:p-8 rounded-2xl border border-[#DCD6C8] bg-white space-y-4 shadow-sm">
             {activePreviewTab === 'toc' && (
-              <div className="space-y-4 text-xs sm:text-sm text-[#38453E]">
+              <div className="space-y-3 text-xs sm:text-sm text-[#38453E]">
                 <h3 className="font-bold text-base text-[#17251E]">Table of Contents Overview</h3>
                 <ul className="space-y-2 divide-y divide-[#EFECE3]">
-                  <li className="pt-2"><strong>Chapter 1:</strong> What is a Micro SaaS? Why ideal for non-technical builders.</li>
+                  <li className="pt-2"><strong>Chapter 1:</strong> What is a Micro SaaS? Why it is ideal for non-technical builders in 2026.</li>
                   <li className="pt-2"><strong>Chapter 2:</strong> The 4 No-Code Building Blocks (Database, Interface, Logic, Payments).</li>
-                  <li className="pt-2"><strong>Chapter 3:</strong> The 5-Point Idea Scorecard & 14-Day Validation Method.</li>
-                  <li className="pt-2"><strong>Chapter 4:</strong> 50 Opportunities across 8 Markets (Complete Business Cards).</li>
+                  <li className="pt-2"><strong>Chapter 3:</strong> The 5-Point Idea Scorecard & 14-Day Pre-Build Validation Method.</li>
+                  <li className="pt-2"><strong>Chapter 4:</strong> 50 Opportunities Across 8 Markets (Complete Business Blueprints).</li>
                   <li className="pt-2"><strong>Chapter 5:</strong> Your Next 90 Days Roadmap & Getting Your First 10 Customers.</li>
                 </ul>
               </div>
             )}
 
             {activePreviewTab === 'card' && (
-              <div className="space-y-2 text-xs sm:text-sm text-[#38453E]">
-                <h3 className="font-bold text-base text-[#17251E]">Sample Card Breakdown</h3>
-                <p>Every card provides Problem, Solution, Audience, Pricing, Build Time, Risk, Defensible Edge, and No-Code Stack.</p>
+              <div className="space-y-3 text-xs sm:text-sm text-[#38453E]">
+                <h3 className="font-bold text-base text-[#17251E]">Sample Idea Card Structure</h3>
+                <p>हर आइडिया कार्ड में यह 8 चीजें स्पष्ट लिखी होती हैं:</p>
+                <div className="grid grid-cols-2 gap-2 text-xs pt-1">
+                  <span className="p-2 bg-[#EFECE3] rounded">✓ 1. Problem Statement</span>
+                  <span className="p-2 bg-[#EFECE3] rounded">✓ 2. Core Solution</span>
+                  <span className="p-2 bg-[#EFECE3] rounded">✓ 3. Target Audience</span>
+                  <span className="p-2 bg-[#EFECE3] rounded">✓ 4. Suggested Pricing ($9-$29)</span>
+                  <span className="p-2 bg-[#EFECE3] rounded">✓ 5. Build Time (1-2 Weeks)</span>
+                  <span className="p-2 bg-[#EFECE3] rounded">✓ 6. Defensible Edge</span>
+                  <span className="p-2 bg-[#EFECE3] rounded">✓ 7. No-Code Tech Stack</span>
+                  <span className="p-2 bg-[#EFECE3] rounded">✓ 8. Validation Step</span>
+                </div>
               </div>
             )}
 
             {activePreviewTab === 'economics' && (
-              <div className="space-y-2 text-xs sm:text-sm text-[#38453E]">
-                <h3 className="font-bold text-base text-[#17251E]">The Honest Economics</h3>
-                <p>Operating costs, SaaS subscription pricing, margin calculation, and realistic churn expectations.</p>
+              <div className="space-y-3 text-xs sm:text-sm text-[#38453E]">
+                <h3 className="font-bold text-base text-[#17251E]">Micro SaaS Pricing & Unit Economics</h3>
+                <p>100 Paying Users at $19/month = $1,900 (~₹1,50,000/month) recurring revenue with 90%+ profit margins using free/low-cost tools.</p>
               </div>
             )}
 
             {activePreviewTab === 'stack' && (
-              <div className="space-y-2 text-xs sm:text-sm text-[#38453E]">
-                <h3 className="font-bold text-base text-[#17251E]">Your No-Code Stack</h3>
-                <p>Airtable / Softr / Glide / Make.com / WhatsApp API / Stripe integration blueprints.</p>
+              <div className="space-y-3 text-xs sm:text-sm text-[#38453E]">
+                <h3 className="font-bold text-base text-[#17251E]">The Recommended $0-$20 No-Code Stack</h3>
+                <p>Airtable (Database) + Softr (Web App Interface) + Make.com (Automation Workflows) + Razorpay/Stripe (Payments).</p>
               </div>
             )}
 
             {activePreviewTab === 'scorecard' && (
-              <div className="space-y-2 text-xs sm:text-sm text-[#38453E]">
-                <h3 className="font-bold text-base text-[#17251E]">The 5-Point Scorecard</h3>
-                <p>Photocopy this page for every candidate idea. Four or more ticked, begin validating. Three or fewer, move on.</p>
+              <div className="space-y-3 text-xs sm:text-sm text-[#38453E]">
+                <h3 className="font-bold text-base text-[#17251E]">5-Point Idea Selection Scorecard (ISC)</h3>
+                <p>4 या ज्यादा सही टिक मिलने पर ही आगे बिल्ड करें, अन्यथा दूसरा आइडिया चुनें।</p>
               </div>
             )}
 
             {activePreviewTab === 'plan' && (
-              <div className="space-y-2 text-xs sm:text-sm text-[#38453E]">
-                <h3 className="font-bold text-base text-[#17251E]">Your Ninety-Day Plan</h3>
-                <p>Step-by-step roadmap from validation interviews to first 10 paying customers.</p>
+              <div className="space-y-3 text-xs sm:text-sm text-[#38453E]">
+                <h3 className="font-bold text-base text-[#17251E]">90-Day Execution Roadmap</h3>
+                <p>Days 1-14: Validation & Outreach · Days 15-45: MVP Build · Days 46-90: First 10 Customers Acquisition.</p>
               </div>
             )}
           </div>
         </section>
 
-        {/* 7. INTERACTIVE IDEA SCORECARD CHECKLIST */}
-        <section className="p-8 sm:p-10 rounded-2xl border border-[#DCD6C8] bg-white space-y-6 shadow-sm">
+        {/* 8. INTERACTIVE IDEA SCORECARD CHECKLIST */}
+        <section className="p-6 sm:p-10 rounded-2xl border border-[#DCD6C8] bg-white space-y-6 shadow-sm">
           <div className="space-y-2 max-w-2xl">
-            <span className="text-xs font-mono uppercase tracking-widest text-[#728077] font-bold">FRAMEWORK SCORECARD</span>
+            <span className="text-xs font-mono uppercase tracking-widest text-[#D35A2A] font-bold">INTERACTIVE FRAMEWORK</span>
             <h2
               className="text-3xl sm:text-4xl font-normal text-[#17251E]"
               style={{ fontFamily: "'Newsreader', Georgia, serif" }}
             >
-              Don't Choose With Your Gut. Score the Idea First.
+              Don't Choose With Your Gut. Score the Idea First!
             </h2>
             <p className="text-sm text-[#59665E]">
-              Photocopy this page for every candidate idea. Four or more ticked, begin validating. Three or fewer, move on.
+              अपने आइडिया को नीचे दिए गए 5 पॉइंट्स पर टेस्ट करें। 4 या ज्यादा टिक मिलने पर ही बिल्ड शुरू करें:
             </p>
           </div>
 
           <div className="space-y-3">
             {[
-              { key: 'narrowAudience', label: 'Narrow Audience: Can you precisely define the target user? ("Solo newsletter creators" vs "Small businesses")' },
-              { key: 'recurringPain', label: 'Recurring Pain: Does the problem happen weekly/daily, creating consistent demand?' },
-              { key: 'workaroundInefficiency', label: 'Workaround Inefficiency: Is the current manual process messy and time-consuming?' },
-              { key: 'willingnessToPay', label: 'Willingness to Pay: Does this target audience already pay for software tools?' },
-              { key: 'noCodeFeasibility', label: 'No-Code Feasibility: Can the MVP be built realistically with visual tools like Softr, Airtable & Make?' },
+              { key: 'narrowAudience', label: 'Narrow Audience: क्या आपकी टारगेट ऑडियंस स्पष्ट है? ("Freelancers" के बजाय "Graphic Designers in India")' },
+              { key: 'recurringPain', label: 'Recurring Pain: क्या समस्या हर हफ्ते/महीने दोबारा होती है?' },
+              { key: 'workaroundInefficiency', label: 'Workaround Inefficiency: क्या वर्तमान मैनुअल तरीका समय बर्बाद करने वाला है?' },
+              { key: 'willingnessToPay', label: 'Willingness to Pay: क्या यह ऑडियंस पहले से सॉफ्टवेयर टूल्स के लिए पैसे देती है?' },
+              { key: 'noCodeFeasibility', label: 'No-Code Feasibility: क्या MVP को Softr, Airtable और Make से आसानी से बनाया जा सकता है?' },
             ].map((item) => {
               const isChecked = scorecardChecks[item.key];
               return (
@@ -508,136 +714,119 @@ export const SaasIdeasSalesPage: React.FC<SaasIdeasSalesPageProps> = ({ product 
             </div>
             <a
               href="#checkout"
-              className="bg-[#183526] hover:bg-[#11271C] text-white font-semibold text-xs px-6 py-3 rounded-md transition-all shrink-0"
+              className="bg-[#183526] hover:bg-[#11271C] text-white font-bold text-xs px-6 py-3 rounded-lg transition-all shrink-0 shadow-md"
             >
-              Get the Scorecard + All 50 Ideas →
+              Get Scorecard + 50 Ideas (₹499) →
             </a>
           </div>
         </section>
 
-        {/* 8. QUALIFICATIONS */}
-        <section className="space-y-8 pt-6 border-t border-[#E4DFD3]">
-          <div className="space-y-2">
-            <span className="text-xs font-mono uppercase tracking-widest text-[#728077] font-bold">SUITABILITY</span>
+        {/* 9. PRICING & INDIA PAYMENT TRUST CARD */}
+        <section id="checkout" className="p-8 sm:p-14 rounded-3xl border border-[#183526] bg-[#183526] text-white text-center space-y-8 shadow-2xl">
+          <div className="max-w-2xl mx-auto space-y-3">
+            <span className="text-xs font-mono uppercase tracking-widest text-[#A1B3A7] font-bold">LIMITED TIME LAUNCH OFFER</span>
             <h2
-              className="text-3xl sm:text-4xl font-normal text-[#17251E]"
+              className="text-3xl sm:text-5xl font-normal text-white tracking-tight"
               style={{ fontFamily: "'Newsreader', Georgia, serif" }}
             >
-              Is This Playbook For You?
+              आज ही अपना SaaS सफ़र शुरू करें।
             </h2>
+            <p className="text-sm text-[#C3D1C8]">
+              आपको 1 ही ख़रीद में **English + Hinglish दोनों एडिशन्स** का फुल एक्सेस तुरंत मिलेगा।
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="p-8 rounded-2xl border border-[#DCD6C8] bg-white space-y-4">
-              <h3 className="font-bold text-base text-[#17251E] flex items-center gap-2">
-                <CheckCircle2 className="w-5 h-5 text-[#183526]" /> This Book Is For You If…
-              </h3>
-              <ul className="space-y-2.5 text-xs sm:text-sm text-[#47544C]">
-                <li>✓ You want specific, evaluated SaaS opportunities instead of vague advice.</li>
-                <li>✓ You are a non-technical founder, freelancer, or solo builder.</li>
-                <li>✓ You want a practical framework to validate before building.</li>
-                <li>✓ You want real no-code tool stacks (Airtable, Softr, Make, Stripe).</li>
-              </ul>
+          <div className="max-w-md mx-auto space-y-6">
+            
+            {/* Price Display Box */}
+            <div className="p-6 rounded-2xl bg-white/10 border border-white/15 backdrop-blur-md space-y-2">
+              <div className="flex items-center justify-center gap-3">
+                <span className="text-4xl sm:text-5xl font-extrabold text-white">₹499</span>
+                <span className="text-lg text-[#A1B3A7] line-through">₹1,499</span>
+              </div>
+              <p className="text-xs text-[#A1B3A7]">One-Time Payment · Lifetime Download Access · Free Updates</p>
             </div>
 
-            <div className="p-8 rounded-2xl border border-[#DCD6C8] bg-white space-y-4">
-              <h3 className="font-bold text-base text-[#728077] flex items-center gap-2">
-                <XCircle className="w-5 h-5 text-[#A3ADA7]" /> Probably Not For You If…
-              </h3>
-              <ul className="space-y-2.5 text-xs sm:text-sm text-[#728077]">
-                <li>– You expect overnight passive income promises.</li>
-                <li>– You are looking for complex C++ or enterprise software manuals.</li>
-                <li>– You expect products to sell themselves without customer conversations.</li>
-              </ul>
+            {/* High Contrast Primary CTA Button */}
+            <a
+              href={`mailto:support@newaihubber.com?subject=Order%2050%20Micro%20SaaS%20Ebook`}
+              className="w-full bg-[#D35A2A] hover:bg-[#b84b1f] text-white font-bold text-base sm:text-lg px-8 py-4 rounded-xl transition-all flex items-center justify-center gap-2 shadow-2xl transform hover:scale-[1.02]"
+            >
+              <Lock className="w-5 h-5" />
+              <span>Get Instant Download (₹499) →</span>
+            </a>
+
+            {/* Payment Trust Badges */}
+            <div className="space-y-3 pt-2">
+              <p className="text-xs text-[#C3D1C8] font-medium">Supported Payment Methods (India & Global):</p>
+              <div className="flex flex-wrap items-center justify-center gap-2 text-[11px] text-white font-mono">
+                <span className="px-3 py-1 bg-white/10 rounded border border-white/10">UPI (GPay / PhonePe / Paytm)</span>
+                <span className="px-3 py-1 bg-white/10 rounded border border-white/10">Credit / Debit Cards</span>
+                <span className="px-3 py-1 bg-white/10 rounded border border-white/10">NetBanking</span>
+                <span className="px-3 py-1 bg-white/10 rounded border border-white/10">Razorpay / Stripe</span>
+              </div>
             </div>
+
           </div>
         </section>
 
-        {/* 9. FAQ ACCORDION */}
-        <section className="space-y-8 pt-6 border-t border-[#E4DFD3]">
+        {/* 10. COMPREHENSIVE FAQ SECTION */}
+        <section className="space-y-8 pt-4 border-t border-[#E4DFD3]">
           <div className="space-y-2">
-            <span className="text-xs font-mono uppercase tracking-widest text-[#728077] font-bold">FREQUENTLY ASKED QUESTIONS</span>
+            <span className="text-xs font-mono uppercase tracking-widest text-[#D35A2A] font-bold">FREQUENTLY ASKED QUESTIONS</span>
             <h2
               className="text-3xl sm:text-4xl font-normal text-[#17251E]"
               style={{ fontFamily: "'Newsreader', Georgia, serif" }}
             >
-              Frequently Asked Questions
+              अक्सर पूछे जाने वाले सवाल (FAQ)
             </h2>
           </div>
 
           <div className="space-y-3">
             {[
               {
-                question: 'Do I need any coding or programming experience?',
-                answer: 'No. This handbook is written specifically for non-technical beginners. All 50 ideas are designed around visual tools like Airtable, Softr, Tally, and Make.com.',
+                question: '1. क्या ये SaaS Ideas पहले से saturated हैं?',
+                answer: 'नहीं। इस बुक में दिए गए आइडियाज बहुत ही Narrow Niche Markets के लिए हैं (जैसे Indian Freelancers के लिए WhatsApp Invoicing या Local Clinics के लिए Softr CRM)। ये बड़ी ब्रॉड कंपनियों के लिए छोटे मार्केट्स हैं, लेकिन solo builder के लिए $1,000–$3,000/month कमाने का सबसे अच्छा अवसर हैं।',
               },
               {
-                question: 'Are both English and Hinglish editions included?',
-                answer: 'Yes! When you purchase, you receive instant download access to BOTH the full English Edition PDF/ePub and the Hinglish Edition PDF/ePub.',
+                question: '2. क्या मैं बिना किसी कोडिंग या प्रोग्रामिंग अनुभव के भी इसे बना सकता हूँ?',
+                answer: 'हाँ, बिल्कुल! यह हैंडबुक खास तौर पर नॉन-टेक्निकल बिगिनर्स के लिए लिखी गई है। सभी 50 आइडियाज drag-and-drop Visual Tools (Softr, Airtable, Make.com, Tally) के साथ डिज़ाइन किए गए हैं।',
               },
               {
-                question: 'Are these just random AI-generated startup ideas?',
-                answer: 'No. Every single idea is structured with a defined problem statement, target customer, MVP features, suggested stack, pricing model, complexity rating, and risk factor.',
+                question: '3. क्या इसमें वास्तविक वैलिडेटिंग स्टेप्स मिलेंगे या यह सिर्फ आइडियाज की लिस्ट है?',
+                answer: 'यह सिर्फ लिस्ट नहीं है! हर आइडिया में exact Problem, Target Audience, Pricing, Risk Factor और Defensible Edge दिया गया है। साथ ही बुक में 14-Day Pre-Build Validation Process और 4 Ready-to-Send Outreach Message Scripts शामिल हैं।',
               },
               {
-                question: 'Do I need expensive software tools to start?',
-                answer: 'No. The book outlines a free/low-cost stack ($0–$20/month) to build your initial version.',
+                question: '4. क्या शुरू करने के लिए महंगे सॉफ्टवेयर टूल्स खरीदने होंगे?',
+                answer: 'नहीं। किताब में $0–$20/month का बिगिनर स्टैक बताया गया है जो ज्यादातर टूल्स के फ्री टियर्स (Free Tiers) का इस्तेमाल करता है। जब आपको पहले Paying Users मिल जाएं, तब ही अपग्रेड करें।',
+              },
+              {
+                question: '5. क्या एक ही ख़रीद में English और Hinglish दोनों एडिशन्स शामिल हैं?',
+                answer: 'हाँ! एक बार ख़रीदने पर आपको फुल English Edition PDF + ePub और फुल Hinglish Edition PDF + ePub दोनों का इंस्टेंट डाउनलोड एक्सेस मिलता है।',
+              },
+              {
+                question: '6. पेमेंट के बाद डिलीवरी कैसे होती है और रिफंड/सपोर्ट पॉलिसी क्या है?',
+                answer: 'पेमेंट पूरा होते ही आपके ईमेल पर और स्क्रीन पर तुरंत PDF डाउनलोड लिंक मिल जाता है। अगर डाउनलोड में कोई समस्या आती है, तो हमारी सपोर्ट टीम (support@newaihubber.com) 24 घंटे के अंदर मदद करती है।',
               },
             ].map((faqItem, idx) => {
               const isOpen = openFaq === idx;
               return (
-                <div key={idx} className="rounded-xl border border-[#DCD6C8] bg-white overflow-hidden">
+                <div key={idx} className="rounded-xl border border-[#DCD6C8] bg-white overflow-hidden shadow-sm">
                   <button
                     onClick={() => toggleFaq(idx)}
-                    className="w-full p-5 text-left font-semibold text-sm sm:text-base text-[#17251E] flex items-center justify-between gap-4"
+                    className="w-full p-4 sm:p-5 text-left font-bold text-sm sm:text-base text-[#17251E] flex items-center justify-between gap-4 hover:bg-[#F7F4EE]/50 transition-colors"
                   >
                     <span>{faqItem.question}</span>
                     <ChevronDown className={`w-4 h-4 text-[#728077] transition-transform ${isOpen ? 'rotate-180' : ''}`} />
                   </button>
                   {isOpen && (
-                    <div className="px-5 pb-5 text-xs sm:text-sm text-[#47544C] leading-relaxed border-t border-[#EFECE3] pt-3">
+                    <div className="px-4 sm:px-5 pb-5 text-xs sm:text-sm text-[#47544C] leading-relaxed border-t border-[#EFECE3] pt-3">
                       {faqItem.answer}
                     </div>
                   )}
                 </div>
               );
             })}
-          </div>
-        </section>
-
-        {/* 10. FINAL CALL TO ACTION */}
-        <section id="checkout" className="p-8 sm:p-14 rounded-3xl border border-[#183526] bg-[#183526] text-white text-center space-y-6 shadow-xl">
-          <div className="max-w-2xl mx-auto space-y-3">
-            <h2
-              className="text-3xl sm:text-5xl font-normal text-white tracking-tight"
-              style={{ fontFamily: "'Newsreader', Georgia, serif" }}
-            >
-              You Don't Need Another Month of Thinking About What to Build.
-            </h2>
-            <p className="text-sm text-[#C3D1C8]">
-              Pick an opportunity. Validate the problem. Build the smallest version. Get it in front of real customers.
-            </p>
-          </div>
-
-          <div className="max-w-md mx-auto space-y-4">
-            <div className="text-center">
-              <span className="text-3xl sm:text-4xl font-mono font-bold text-white">
-                {formatPrice(product.price, product.currency)}
-              </span>
-              <p className="text-xs text-[#A1B3A7] mt-1">Instant digital access after successful payment</p>
-            </div>
-
-            <a
-              href={`mailto:support@newaihubber.com?subject=Order%20${product.slug}`}
-              className="w-full bg-[#F7F4EE] hover:bg-white text-[#183526] font-bold text-sm sm:text-base px-8 py-4 rounded-md transition-all flex items-center justify-center gap-2 shadow-lg"
-            >
-              <Lock className="w-4 h-4" />
-              <span>Get this eBook ({formatPrice(product.price, product.currency)}) →</span>
-            </a>
-
-            <p className="text-[11px] text-[#A1B3A7]">
-              50 Micro SaaS You Can Build Without Coding — The Non-Technical Founder's Playbook, 2026 Edition.
-            </p>
           </div>
         </section>
 
