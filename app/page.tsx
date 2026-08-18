@@ -15,8 +15,8 @@ export default function StoreHomePage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   
-  // Default mode is LIGHT as requested by user ("default roop se white mode me hi rahega")
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  // Default theme is DARK mode (#0a0a0a)
+  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
 
   // Wave transition animation overlay state
   const [waveAnimation, setWaveAnimation] = useState<{
@@ -26,11 +26,13 @@ export default function StoreHomePage() {
     targetTheme: 'light' | 'dark';
   } | null>(null);
 
-  // Load theme preference from localStorage on mount (defaults to light)
+  // Load theme preference from localStorage on mount (defaults to dark if not set)
   useEffect(() => {
     const savedTheme = localStorage.getItem('store_theme') as 'light' | 'dark' | null;
     if (savedTheme === 'dark' || savedTheme === 'light') {
       setTheme(savedTheme);
+    } else {
+      setTheme('dark');
     }
   }, []);
 
