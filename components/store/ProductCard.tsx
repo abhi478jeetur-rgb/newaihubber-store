@@ -6,14 +6,16 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Product } from '@/types/product';
 import { formatPrice } from '@/lib/utils';
-import { ExternalLink, Play, ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 
 interface ProductCardProps {
   product: Product;
+  theme?: 'light' | 'dark';
 }
 
-export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+export const ProductCard: React.FC<ProductCardProps> = ({ product, theme = 'light' }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const isLight = theme === 'light';
 
   return (
     <motion.div
@@ -22,11 +24,15 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       transition={{ duration: 0.35, ease: 'easeOut' }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="group relative flex flex-col rounded-2xl border border-neutral-800/80 bg-[#121212] overflow-hidden transition-all duration-300 hover:border-neutral-600 hover:shadow-2xl"
+      className={`group relative flex flex-col rounded-2xl border overflow-hidden transition-all duration-300 ${
+        isLight
+          ? 'bg-white border-neutral-200/80 shadow-sm hover:shadow-xl hover:border-neutral-300'
+          : 'bg-[#121212] border-neutral-800/80 hover:border-neutral-600 hover:shadow-2xl'
+      }`}
     >
       
       {/* Animated Visual Thumbnail Container */}
-      <Link href={`/product/${product.slug}`} className="relative aspect-[16/10] w-full overflow-hidden bg-[#000000] block">
+      <Link href={`/product/${product.slug}`} className="relative aspect-[16/10] w-full overflow-hidden bg-[#0a0a0a] block">
         
         {/* Poster Image */}
         <Image
@@ -35,7 +41,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className={`object-cover transition-transform duration-700 ease-out ${
-            isHovered ? 'scale-105 opacity-90' : 'scale-100 opacity-80'
+            isHovered ? 'scale-105 opacity-95' : 'scale-100 opacity-90'
           }`}
         />
 
@@ -49,11 +55,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         )}
 
         {/* Subtle Dark Overlay Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#121212] via-transparent to-black/30 pointer-events-none z-20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none z-20" />
 
         {/* Top Badges */}
         <div className="absolute top-3 left-3 right-3 flex items-center justify-between z-30 pointer-events-none">
-          <span className="text-[11px] font-semibold text-neutral-300 bg-[#0a0a0a]/80 backdrop-blur-md border border-neutral-800 px-2.5 py-1 rounded-md">
+          <span className="text-[11px] font-semibold text-neutral-200 bg-black/60 backdrop-blur-md border border-white/10 px-2.5 py-1 rounded-md">
             {product.categoryLabel}
           </span>
           {product.badge && (
@@ -76,22 +82,40 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       <div className="p-4 flex flex-col justify-between flex-1 space-y-3">
         <div className="space-y-1">
           <Link href={`/product/${product.slug}`} className="block">
-            <h3 className="font-semibold text-sm text-neutral-100 group-hover:text-white transition-colors line-clamp-1">
+            <h3
+              className={`font-semibold text-sm transition-colors line-clamp-1 ${
+                isLight ? 'text-neutral-900 group-hover:text-black' : 'text-neutral-100 group-hover:text-white'
+              }`}
+            >
               {product.title}
             </h3>
           </Link>
-          <p className="text-xs text-neutral-400 line-clamp-2 leading-relaxed">
+          <p
+            className={`text-xs line-clamp-2 leading-relaxed ${
+              isLight ? 'text-neutral-600' : 'text-neutral-400'
+            }`}
+          >
             {product.shortDescription}
           </p>
         </div>
 
-        <div className="pt-2 border-t border-neutral-800/60 flex items-center justify-between">
-          <span className="text-xs font-bold text-white font-mono">
+        <div
+          className={`pt-2 border-t flex items-center justify-between ${
+            isLight ? 'border-neutral-100' : 'border-neutral-800/60'
+          }`}
+        >
+          <span
+            className={`text-xs font-bold font-mono ${
+              isLight ? 'text-neutral-900' : 'text-white'
+            }`}
+          >
             {formatPrice(product.price, product.currency)}
           </span>
           <Link
             href={`/product/${product.slug}`}
-            className="text-xs font-semibold text-neutral-300 hover:text-white flex items-center gap-1 group-hover:underline"
+            className={`text-xs font-semibold flex items-center gap-1 group-hover:underline ${
+              isLight ? 'text-neutral-700 hover:text-black' : 'text-neutral-300 hover:text-white'
+            }`}
           >
             <span>View Landing Page</span>
           </Link>
